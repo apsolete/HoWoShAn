@@ -12,16 +12,16 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
-        android:name="com.apsolete.myworkshop.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
-        tools:layout="@layout/fragment_gallery" />
+        android:id="@+id/nav_toolsequipment"
+        android:name="com.apsolete.myworkshop.ui.toolsequipment.ToolsEquipmentFragment"
+        android:label="@string/menu_toolsequipment"
+        tools:layout="@layout/fragment_toolsequipment" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
-        android:name="com.apsolete.myworkshop.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
-        tools:layout="@layout/fragment_slideshow" />
+        android:id="@+id/nav_materials"
+        android:name="com.apsolete.myworkshop.ui.materials.MaterialsFragment"
+        android:label="@string/menu_materials"
+        tools:layout="@layout/fragment_materials" />
 
     <fragment
         android:id="@+id/nav_tools"

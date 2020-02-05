@@ -1,4 +1,4 @@
-package com.apsolete.myworkshop.ui.slideshow;
+package com.apsolete.myworkshop.ui.materials;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,18 +14,15 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.apsolete.myworkshop.R;
 
-public class SlideshowFragment extends Fragment
+public class MaterialsFragment extends Fragment
 {
+    private MaterialsViewModel slideshowViewModel;
 
-    private SlideshowViewModel slideshowViewModel;
-
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState)
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        slideshowViewModel =
-                new ViewModelProvider(this).get(SlideshowViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_slideshow, container, false);
-        final TextView textView = root.findViewById(R.id.text_slideshow);
+        slideshowViewModel = new ViewModelProvider(this).get(MaterialsViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_materials, container, false);
+        final TextView textView = root.findViewById(R.id.text_materials);
         slideshowViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>()
         {
             @Override

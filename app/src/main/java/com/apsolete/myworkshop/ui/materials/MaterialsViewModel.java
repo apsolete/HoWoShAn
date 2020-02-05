@@ -1,18 +1,18 @@
-package com.apsolete.myworkshop.ui.gallery;
+package com.apsolete.myworkshop.ui.materials;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class GalleryViewModel extends ViewModel
+public class MaterialsViewModel extends ViewModel
 {
 
     private MutableLiveData<String> mText;
 
-    public GalleryViewModel()
+    public MaterialsViewModel()
     {
         mText = new MutableLiveData<>();
-        mText.setValue("This is gallery fragment");
+        mText.setValue("This is Materials and Accessories fragment");
     }
 
     public LiveData<String> getText()
