@@ -22,7 +22,7 @@ public class EquipmentFragment extends Fragment
     {
         viewModel = new ViewModelProvider(this).get(EquipmentViewModel.class);
         View root = inflater.inflate(R.layout.fragment_equipment, container, false);
-        final TextView textView = root.findViewById(R.id.text_toolsequipment);
+        final TextView textView = root.findViewById(R.id.text_equipment);
         viewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>()
         {
             @Override

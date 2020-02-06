@@ -12,6 +12,12 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
+        android:id="@+id/nav_workshop"
+        android:name="com.apsolete.myworkshop.ui.workshop.WorkshopFragment"
+        android:label="@string/menu_equipment"
+        tools:layout="@layout/fragment_workshop" />
+
+    <fragment
         android:id="@+id/nav_equipment"
         android:name="com.apsolete.myworkshop.ui.equipment.EquipmentFragment"
         android:label="@string/menu_equipment"
