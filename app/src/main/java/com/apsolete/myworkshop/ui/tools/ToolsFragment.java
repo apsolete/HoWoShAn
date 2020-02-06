@@ -16,17 +16,14 @@ import com.apsolete.myworkshop.R;
 
 public class ToolsFragment extends Fragment
 {
+    private ToolsViewModel viewModel;
 
-    private ToolsViewModel toolsViewModel;
-
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState)
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        toolsViewModel =
-                new ViewModelProvider(this).get(ToolsViewModel.class);
+        viewModel = new ViewModelProvider(this).get(ToolsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_tools, container, false);
         final TextView textView = root.findViewById(R.id.text_tools);
-        toolsViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>()
+        viewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>()
         {
             @Override
             public void onChanged(@Nullable String s)

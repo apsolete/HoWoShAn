@@ -16,14 +16,14 @@ import com.apsolete.myworkshop.R;
 
 public class MaterialsFragment extends Fragment
 {
-    private MaterialsViewModel slideshowViewModel;
+    private MaterialsViewModel viewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        slideshowViewModel = new ViewModelProvider(this).get(MaterialsViewModel.class);
+        viewModel = new ViewModelProvider(this).get(MaterialsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_materials, container, false);
         final TextView textView = root.findViewById(R.id.text_materials);
-        slideshowViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>()
+        viewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>()
         {
             @Override
             public void onChanged(@Nullable String s)

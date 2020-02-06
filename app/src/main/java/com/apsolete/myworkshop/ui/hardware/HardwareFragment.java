@@ -1,4 +1,4 @@
-package com.apsolete.myworkshop.ui.share;
+package com.apsolete.myworkshop.ui.hardware;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,19 +14,16 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.apsolete.myworkshop.R;
 
-public class ShareFragment extends Fragment
+public class HardwareFragment extends Fragment
 {
+    private HardwareViewModel viewModel;
 
-    private ShareViewModel shareViewModel;
-
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState)
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        shareViewModel =
-                new ViewModelProvider(this).get(ShareViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_share, container, false);
+        viewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(HardwareViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_hardware, container, false);
         final TextView textView = root.findViewById(R.id.text_share);
-        shareViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>()
+        viewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>()
         {
             @Override
             public void onChanged(@Nullable String s)

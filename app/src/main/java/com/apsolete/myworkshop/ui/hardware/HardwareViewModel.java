@@ -1,15 +1,15 @@
-package com.apsolete.myworkshop.ui.share;
+package com.apsolete.myworkshop.ui.hardware;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
-public class ShareViewModel extends ViewModel
+public class HardwareViewModel extends ViewModel
 {
 
     private MutableLiveData<String> mText;
 
-    public ShareViewModel()
+    public HardwareViewModel()
     {
         mText = new MutableLiveData<>();
         mText.setValue("This is share fragment");

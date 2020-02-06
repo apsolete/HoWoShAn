@@ -1,4 +1,4 @@
-package com.apsolete.myworkshop.ui.toolsequipment;
+package com.apsolete.myworkshop.ui.equipment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,16 +14,16 @@ import androidx.lifecycle.ViewModelProvider;
 
 import com.apsolete.myworkshop.R;
 
-public class ToolsEquipmentFragment extends Fragment
+public class EquipmentFragment extends Fragment
 {
-    private ToolsEquipmentViewModel galleryViewModel;
+    private EquipmentViewModel viewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        galleryViewModel = new ViewModelProvider(this).get(ToolsEquipmentViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_toolsequipment, container, false);
+        viewModel = new ViewModelProvider(this).get(EquipmentViewModel.class);
+        View root = inflater.inflate(R.layout.fragment_equipment, container, false);
         final TextView textView = root.findViewById(R.id.text_toolsequipment);
-        galleryViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>()
+        viewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>()
         {
             @Override
             public void onChanged(@Nullable String s)

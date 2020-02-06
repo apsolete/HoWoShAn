@@ -16,17 +16,14 @@ import com.apsolete.myworkshop.R;
 
 public class SendFragment extends Fragment
 {
+    private SendViewModel viewModel;
 
-    private SendViewModel sendViewModel;
-
-    public View onCreateView(@NonNull LayoutInflater inflater,
-                             ViewGroup container, Bundle savedInstanceState)
+    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        sendViewModel =
-                new ViewModelProvider(this).get(SendViewModel.class);
+        viewModel = new ViewModelProvider(this).get(SendViewModel.class);
         View root = inflater.inflate(R.layout.fragment_send, container, false);
         final TextView textView = root.findViewById(R.id.text_send);
-        sendViewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>()
+        viewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>()
         {
             @Override
             public void onChanged(@Nullable String s)

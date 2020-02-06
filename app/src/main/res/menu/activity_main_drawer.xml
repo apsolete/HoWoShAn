@@ -9,9 +9,9 @@
             android:icon="@drawable/ic_menu_camera"
             android:title="@string/menu_home" />
         <item
-            android:id="@+id/nav_toolsequipment"
+            android:id="@+id/nav_equipment"
             android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_toolsequipment" />
+            android:title="@string/menu_equipment" />
         <item
             android:id="@+id/nav_materials"
             android:icon="@drawable/ic_menu_slideshow"
@@ -25,9 +25,9 @@
     <item android:title="@string/communicate">
         <menu>
             <item
-                android:id="@+id/nav_share"
+                android:id="@+id/nav_hardware"
                 android:icon="@drawable/ic_menu_share"
-                android:title="@string/menu_share" />
+                android:title="@string/menu_hardware" />
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"

@@ -12,16 +12,10 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_toolsequipment"
-        android:name="com.apsolete.myworkshop.ui.toolsequipment.ToolsEquipmentFragment"
-        android:label="@string/menu_toolsequipment"
-        tools:layout="@layout/fragment_toolsequipment" />
-
-    <fragment
-        android:id="@+id/nav_materials"
-        android:name="com.apsolete.myworkshop.ui.materials.MaterialsFragment"
-        android:label="@string/menu_materials"
-        tools:layout="@layout/fragment_materials" />
+        android:id="@+id/nav_equipment"
+        android:name="com.apsolete.myworkshop.ui.equipment.EquipmentFragment"
+        android:label="@string/menu_equipment"
+        tools:layout="@layout/fragment_equipment" />
 
     <fragment
         android:id="@+id/nav_tools"
@@ -30,10 +24,16 @@
         tools:layout="@layout/fragment_tools" />
 
     <fragment
-        android:id="@+id/nav_share"
-        android:name="com.apsolete.myworkshop.ui.share.ShareFragment"
-        android:label="@string/menu_share"
-        tools:layout="@layout/fragment_share" />
+        android:id="@+id/nav_materials"
+        android:name="com.apsolete.myworkshop.ui.materials.MaterialsFragment"
+        android:label="@string/menu_materials"
+        tools:layout="@layout/fragment_materials" />
+
+    <fragment
+        android:id="@+id/nav_hardware"
+        android:name="com.apsolete.myworkshop.ui.hardware.HardwareFragment"
+        android:label="@string/menu_hardware"
+        tools:layout="@layout/fragment_hardware" />
 
     <fragment
         android:id="@+id/nav_send"
