@@ -12,7 +12,7 @@ public class HardwareViewModel extends ViewModel
     public HardwareViewModel()
     {
         mText = new MutableLiveData<>();
-        mText.setValue("This is share fragment");
+        mText.setValue("This is Hardware fragment");
     }
 
     public LiveData<String> getText()

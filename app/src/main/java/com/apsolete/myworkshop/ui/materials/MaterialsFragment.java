@@ -6,31 +6,33 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
 import com.apsolete.myworkshop.R;
+import com.apsolete.myworkshop.common.CustomFragment;
+import com.apsolete.myworkshop.common.CustomObserver;
 
-public class MaterialsFragment extends Fragment
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+public class MaterialsFragment extends CustomFragment<MaterialsViewModel>
 {
-    private MaterialsViewModel viewModel;
+    public MaterialsFragment()
+    {
+        super(R.layout.fragment_materials);
+    }
 
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        viewModel = new ViewModelProvider(this).get(MaterialsViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_materials, container, false);
-        final TextView textView = root.findViewById(R.id.text_materials);
-        viewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>()
+        View root = createView(inflater, container, savedInstanceState, MaterialsViewModel.class);
+        initTextView(R.id.text_materials, mViewModel.getText(), new CustomObserver<TextView, String>()
         {
             @Override
             public void onChanged(@Nullable String s)
             {
-                textView.setText(s);
+                mView.setText(s);
             }
         });
+
         return root;
     }
 }

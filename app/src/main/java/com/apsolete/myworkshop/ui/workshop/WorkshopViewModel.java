@@ -6,11 +6,10 @@ import androidx.lifecycle.ViewModel;
 
 public class WorkshopViewModel extends ViewModel
 {
-    private MutableLiveData<String> mText;
+    private MutableLiveData<String> mText = new MutableLiveData<>();
 
     public WorkshopViewModel()
     {
-        mText = new MutableLiveData<>();
         mText.setValue("This is Workshop fragment");
     }
 

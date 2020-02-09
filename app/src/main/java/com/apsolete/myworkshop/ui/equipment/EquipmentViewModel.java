@@ -12,7 +12,7 @@ public class EquipmentViewModel extends ViewModel
     public EquipmentViewModel()
     {
         mText = new MutableLiveData<>();
-        mText.setValue("This is Tools and Equipment fragment");
+        mText.setValue("This is Equipment fragment");
     }
 
     public LiveData<String> getText()

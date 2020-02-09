@@ -7,28 +7,29 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import com.apsolete.myworkshop.R;
+import com.apsolete.myworkshop.common.CustomFragment;
+import com.apsolete.myworkshop.common.CustomObserver;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
 
-public class WorkshopFragment extends Fragment
+public class WorkshopFragment extends CustomFragment<WorkshopViewModel>
 {
-    private WorkshopViewModel viewModel;
+    public WorkshopFragment()
+    {
+        super(R.layout.fragment_workshop);
+    }
 
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        viewModel = new ViewModelProvider(this).get(WorkshopViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_workshop, container, false);
-        final TextView textView = root.findViewById(R.id.text_workshop);
-        viewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>()
+        View root = createView(inflater, container, savedInstanceState, WorkshopViewModel.class);
+        initTextView(R.id.text_workshop, mViewModel.getText(), new CustomObserver<TextView, String>()
         {
             @Override
             public void onChanged(@Nullable String s)
             {
-                textView.setText(s);
+                mView.setText(s);
             }
         });
         return root;

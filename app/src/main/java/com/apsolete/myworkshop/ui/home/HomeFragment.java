@@ -6,31 +6,33 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import androidx.annotation.Nullable;
-import androidx.annotation.NonNull;
-import androidx.fragment.app.Fragment;
-import androidx.lifecycle.Observer;
-import androidx.lifecycle.ViewModelProvider;
-
 import com.apsolete.myworkshop.R;
+import com.apsolete.myworkshop.common.CustomFragment;
+import com.apsolete.myworkshop.common.CustomObserver;
 
-public class HomeFragment extends Fragment
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+
+public class HomeFragment extends CustomFragment<HomeViewModel>
 {
-    private HomeViewModel viewModel;
+    public HomeFragment()
+    {
+        super(R.layout.fragment_home);
+    }
 
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
-        viewModel = new ViewModelProvider(this).get(HomeViewModel.class);
-        View root = inflater.inflate(R.layout.fragment_home, container, false);
-        final TextView textView = root.findViewById(R.id.text_home);
-        viewModel.getText().observe(getViewLifecycleOwner(), new Observer<String>()
+        View root = createView(inflater, container, savedInstanceState, HomeViewModel.class);
+        initTextView(R.id.text_home, mViewModel.getText(), new CustomObserver<TextView, String>()
         {
             @Override
             public void onChanged(@Nullable String s)
             {
-                textView.setText(s);
+                mView.setText(s);
             }
         });
+
         return root;
     }
 }
