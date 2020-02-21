@@ -2,7 +2,7 @@
 //* http://blog.harrix.org/article/6610
 //*
 
-package com.apsolete.myworkshop.common;
+package com.apsolete.myworkshop.db;
 
 import android.content.Context;
 import android.database.SQLException;
@@ -31,10 +31,9 @@ public class ReadonlyDatabaseHelper extends SQLiteOpenHelper
     {
         super(context, name, factory, version);
 
-        if (android.os.Build.VERSION.SDK_INT >= 17)
-            DB_PATH = context.getApplicationInfo().dataDir + "/databases/";
-        else
-            DB_PATH = "/data/data/" + context.getPackageName() + "/databases/";
+        assert context != null;
+        DB_PATH = context.getApplicationInfo().dataDir + "/databases/";
+
         this.mContext = context;
 
         copyDataBase();
