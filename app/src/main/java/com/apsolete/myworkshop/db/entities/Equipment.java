@@ -11,15 +11,17 @@ public class Equipment
     @PrimaryKey(autoGenerate = true)
     public long id;
     @ColumnInfo
-    public String model;
+    public String name;
     @ColumnInfo
     public String manufacturer;
     @ColumnInfo
     public String description;
     @ColumnInfo
-    public int count;
+    public int amount;
     @ColumnInfo
+    public String storage;
+    @ColumnInfo(index = true)
     public long type_id;
-    @ColumnInfo
+    @ColumnInfo(index = true)
     public long ws_id;
 }

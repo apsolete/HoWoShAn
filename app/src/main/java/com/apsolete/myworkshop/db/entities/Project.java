@@ -14,6 +14,6 @@ public class Project
     public String name;
     @ColumnInfo
     public String description;
-    @ColumnInfo
+    @ColumnInfo(index = true)
     public long ws_id;
 }

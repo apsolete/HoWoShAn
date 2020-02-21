@@ -14,6 +14,6 @@ public class Parameter
     public String name;
     @ColumnInfo
     public String description;
-    @ColumnInfo
+    @ColumnInfo(index = true)
     public long unit_id;
 }

@@ -12,6 +12,6 @@ public class EquipmentType
     public long id;
     @ColumnInfo
     public String name;
-    @ColumnInfo
+    @ColumnInfo(index = true)
     public long class_id;
 }

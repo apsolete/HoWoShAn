@@ -12,8 +12,8 @@ public class EquipmentParameter
     public long id;
     @ColumnInfo
     public String value;
-    @ColumnInfo
+    @ColumnInfo(index = true)
     public long type_id;
-    @ColumnInfo
+    @ColumnInfo(index = true)
     public long param_id;
 }
