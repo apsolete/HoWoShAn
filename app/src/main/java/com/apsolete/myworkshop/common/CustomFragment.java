@@ -14,10 +14,10 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
-import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.ViewModelProvider;
 
-public abstract class CustomFragment<VM extends ViewModel> extends Fragment
+public abstract class CustomFragment<VM extends AndroidViewModel> extends Fragment
 {
     protected View mRootView;
     protected VM mViewModel;
