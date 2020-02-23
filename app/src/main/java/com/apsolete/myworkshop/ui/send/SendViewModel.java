@@ -1,16 +1,19 @@
 package com.apsolete.myworkshop.ui.send;
 
+import android.app.Application;
+
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.ViewModel;
+import androidx.lifecycle.AndroidViewModel;
 
-public class SendViewModel extends ViewModel
+public class SendViewModel extends AndroidViewModel
 {
 
     private MutableLiveData<String> mText;
 
-    public SendViewModel()
+    public SendViewModel(Application application)
     {
+        super(application);
         mText = new MutableLiveData<>();
         mText.setValue("This is send fragment");
     }
