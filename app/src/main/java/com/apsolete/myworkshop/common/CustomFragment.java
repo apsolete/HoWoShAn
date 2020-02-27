@@ -13,6 +13,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.AndroidViewModel;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 public abstract class CustomFragment<VM extends AndroidViewModel> extends Fragment
@@ -39,10 +40,17 @@ public abstract class CustomFragment<VM extends AndroidViewModel> extends Fragme
         return mRootView;
     }
 
-    protected void initTextView(@IdRes int id, LiveData<String> data, CustomObserver<TextView, String> observer)
+    protected void setTextViewObserver(@IdRes int id, LiveData<String> data)
     {
         TextView textView = mRootView.findViewById(id);
-        observer.setView(textView);
+        Observer<String> observer = new Observers.TextObserver(textView);
+        data.observe(getViewLifecycleOwner(), observer);
+    }
+
+    protected void setViewVisibilityObserver(@IdRes int id, LiveData<Boolean> data)
+    {
+        View view = mRootView.findViewById(id);
+        Observer<Boolean> observer = new Observers.VisibilityObserver(view);
         data.observe(getViewLifecycleOwner(), observer);
     }
 }
