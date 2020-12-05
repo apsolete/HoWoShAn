@@ -7,13 +7,15 @@ import androidx.room.PrimaryKey;
 
 import java.util.Date;
 
-@Entity(tableName = "purchase", foreignKeys = @ForeignKey(entity = Equipment.class, parentColumns = "id", childColumns = "equip_id"))
+@Entity(tableName = "purchase",
+        foreignKeys = @ForeignKey(entity = Equipment.class, parentColumns = "id", childColumns = "equip_id"))
 public class Purchase
 {
     @PrimaryKey(autoGenerate = true)
     public long id;
     @ColumnInfo(index = true)
     public long equip_id;
+
     @ColumnInfo
     public Date created;
     @ColumnInfo

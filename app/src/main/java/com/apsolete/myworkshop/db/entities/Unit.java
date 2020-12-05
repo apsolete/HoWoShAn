@@ -9,6 +9,7 @@ public class Unit
 {
     @PrimaryKey(autoGenerate = true)
     public long id;
+
     @ColumnInfo
     public String symbol;
     @ColumnInfo

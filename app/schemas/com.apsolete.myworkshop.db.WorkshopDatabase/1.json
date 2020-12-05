@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "01e27bde1d836938f903e5b67d57a4e8",
+    "identityHash": "63525a30ca6d9303f797c94a1c5711c1",
     "entities": [
       {
         "tableName": "unit",
@@ -44,11 +44,17 @@
       },
       {
         "tableName": "parameter",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `description` TEXT, `unit_id` INTEGER NOT NULL, FOREIGN KEY(`unit_id`) REFERENCES `unit`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `unit_id` INTEGER NOT NULL, `name` TEXT, `description` TEXT, FOREIGN KEY(`unit_id`) REFERENCES `unit`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
             "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "unit_id",
+            "columnName": "unit_id",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -63,12 +69,6 @@
             "columnName": "description",
             "affinity": "TEXT",
             "notNull": false
-          },
-          {
-            "fieldPath": "unit_id",
-            "columnName": "unit_id",
-            "affinity": "INTEGER",
-            "notNull": true
           }
         ],
         "primaryKey": {
@@ -84,7 +84,7 @@
             "columnNames": [
               "unit_id"
             ],
-            "createSql": "CREATE  INDEX `index_parameter_unit_id` ON `${TABLE_NAME}` (`unit_id`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_parameter_unit_id` ON `${TABLE_NAME}` (`unit_id`)"
           }
         ],
         "foreignKeys": [
@@ -129,7 +129,7 @@
       },
       {
         "tableName": "equip_type",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `class_id` INTEGER NOT NULL, FOREIGN KEY(`class_id`) REFERENCES `equip_class`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `class_id` INTEGER NOT NULL, `name` TEXT, FOREIGN KEY(`class_id`) REFERENCES `equip_class`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
@@ -138,16 +138,16 @@
             "notNull": true
           },
           {
-            "fieldPath": "name",
-            "columnName": "name",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
             "fieldPath": "class_id",
             "columnName": "class_id",
             "affinity": "INTEGER",
             "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -163,7 +163,7 @@
             "columnNames": [
               "class_id"
             ],
-            "createSql": "CREATE  INDEX `index_equip_type_class_id` ON `${TABLE_NAME}` (`class_id`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_equip_type_class_id` ON `${TABLE_NAME}` (`class_id`)"
           }
         ],
         "foreignKeys": [
@@ -181,12 +181,102 @@
         ]
       },
       {
-        "tableName": "equipment",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `manufacturer` TEXT, `description` TEXT, `amount` INTEGER NOT NULL, `storage` TEXT, `type_id` INTEGER NOT NULL, `ws_id` INTEGER NOT NULL, FOREIGN KEY(`type_id`) REFERENCES `equip_type`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`ws_id`) REFERENCES `workshop`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "tableName": "param_set",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `type_id` INTEGER NOT NULL, `param_id` INTEGER NOT NULL, `name` TEXT, FOREIGN KEY(`type_id`) REFERENCES `equip_type`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`param_id`) REFERENCES `parameter`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
             "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type_id",
+            "columnName": "type_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "param_id",
+            "columnName": "param_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_param_set_type_id",
+            "unique": false,
+            "columnNames": [
+              "type_id"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_param_set_type_id` ON `${TABLE_NAME}` (`type_id`)"
+          },
+          {
+            "name": "index_param_set_param_id",
+            "unique": false,
+            "columnNames": [
+              "param_id"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_param_set_param_id` ON `${TABLE_NAME}` (`param_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "equip_type",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "type_id"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          },
+          {
+            "table": "parameter",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "param_id"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "equipment",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ws_id` INTEGER NOT NULL, `type_id` INTEGER NOT NULL, `name` TEXT, `manufacturer` TEXT, `description` TEXT, `amount` INTEGER NOT NULL, `storage` TEXT, FOREIGN KEY(`type_id`) REFERENCES `equip_type`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`ws_id`) REFERENCES `workshop`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ws_id",
+            "columnName": "ws_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type_id",
+            "columnName": "type_id",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -219,18 +309,6 @@
             "columnName": "storage",
             "affinity": "TEXT",
             "notNull": false
-          },
-          {
-            "fieldPath": "type_id",
-            "columnName": "type_id",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "ws_id",
-            "columnName": "ws_id",
-            "affinity": "INTEGER",
-            "notNull": true
           }
         ],
         "primaryKey": {
@@ -241,20 +319,20 @@
         },
         "indices": [
           {
-            "name": "index_equipment_type_id",
-            "unique": false,
-            "columnNames": [
-              "type_id"
-            ],
-            "createSql": "CREATE  INDEX `index_equipment_type_id` ON `${TABLE_NAME}` (`type_id`)"
-          },
-          {
             "name": "index_equipment_ws_id",
             "unique": false,
             "columnNames": [
               "ws_id"
             ],
-            "createSql": "CREATE  INDEX `index_equipment_ws_id` ON `${TABLE_NAME}` (`ws_id`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_equipment_ws_id` ON `${TABLE_NAME}` (`ws_id`)"
+          },
+          {
+            "name": "index_equipment_type_id",
+            "unique": false,
+            "columnNames": [
+              "type_id"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_equipment_type_id` ON `${TABLE_NAME}` (`type_id`)"
           }
         ],
         "foreignKeys": [
@@ -284,19 +362,13 @@
       },
       {
         "tableName": "equip_param",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `value` TEXT, `type_id` INTEGER NOT NULL, `param_id` INTEGER NOT NULL, FOREIGN KEY(`type_id`) REFERENCES `equip_type`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`param_id`) REFERENCES `parameter`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `type_id` INTEGER NOT NULL, `param_id` INTEGER NOT NULL, `value` TEXT, FOREIGN KEY(`type_id`) REFERENCES `equip_type`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`param_id`) REFERENCES `parameter`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
             "columnName": "id",
             "affinity": "INTEGER",
             "notNull": true
-          },
-          {
-            "fieldPath": "value",
-            "columnName": "value",
-            "affinity": "TEXT",
-            "notNull": false
           },
           {
             "fieldPath": "type_id",
@@ -309,6 +381,12 @@
             "columnName": "param_id",
             "affinity": "INTEGER",
             "notNull": true
+          },
+          {
+            "fieldPath": "value",
+            "columnName": "value",
+            "affinity": "TEXT",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -324,7 +402,7 @@
             "columnNames": [
               "type_id"
             ],
-            "createSql": "CREATE  INDEX `index_equip_param_type_id` ON `${TABLE_NAME}` (`type_id`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_equip_param_type_id` ON `${TABLE_NAME}` (`type_id`)"
           },
           {
             "name": "index_equip_param_param_id",
@@ -332,7 +410,7 @@
             "columnNames": [
               "param_id"
             ],
-            "createSql": "CREATE  INDEX `index_equip_param_param_id` ON `${TABLE_NAME}` (`param_id`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_equip_param_param_id` ON `${TABLE_NAME}` (`param_id`)"
           }
         ],
         "foreignKeys": [
@@ -361,18 +439,12 @@
         ]
       },
       {
-        "tableName": "equip_usage",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `used` INTEGER NOT NULL, `project_id` INTEGER NOT NULL, `equip_id` INTEGER NOT NULL, FOREIGN KEY(`project_id`) REFERENCES `project`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`equip_id`) REFERENCES `equipment`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "tableName": "project_equip",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `project_id` INTEGER NOT NULL, `equip_id` INTEGER NOT NULL, `number` INTEGER NOT NULL, `expend` INTEGER NOT NULL, FOREIGN KEY(`project_id`) REFERENCES `project`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`equip_id`) REFERENCES `equipment`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
             "columnName": "id",
-            "affinity": "INTEGER",
-            "notNull": true
-          },
-          {
-            "fieldPath": "used",
-            "columnName": "used",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -387,6 +459,18 @@
             "columnName": "equip_id",
             "affinity": "INTEGER",
             "notNull": true
+          },
+          {
+            "fieldPath": "number",
+            "columnName": "number",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "expend",
+            "columnName": "expend",
+            "affinity": "INTEGER",
+            "notNull": true
           }
         ],
         "primaryKey": {
@@ -397,20 +481,20 @@
         },
         "indices": [
           {
-            "name": "index_equip_usage_project_id",
+            "name": "index_project_equip_project_id",
             "unique": false,
             "columnNames": [
               "project_id"
             ],
-            "createSql": "CREATE  INDEX `index_equip_usage_project_id` ON `${TABLE_NAME}` (`project_id`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_project_equip_project_id` ON `${TABLE_NAME}` (`project_id`)"
           },
           {
-            "name": "index_equip_usage_equip_id",
+            "name": "index_project_equip_equip_id",
             "unique": false,
             "columnNames": [
               "equip_id"
             ],
-            "createSql": "CREATE  INDEX `index_equip_usage_equip_id` ON `${TABLE_NAME}` (`equip_id`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_project_equip_equip_id` ON `${TABLE_NAME}` (`equip_id`)"
           }
         ],
         "foreignKeys": [
@@ -478,11 +562,17 @@
       },
       {
         "tableName": "project",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `description` TEXT, `ws_id` INTEGER NOT NULL, FOREIGN KEY(`ws_id`) REFERENCES `workshop`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ws_id` INTEGER NOT NULL, `name` TEXT, `description` TEXT, FOREIGN KEY(`ws_id`) REFERENCES `workshop`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
             "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ws_id",
+            "columnName": "ws_id",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -497,12 +587,6 @@
             "columnName": "description",
             "affinity": "TEXT",
             "notNull": false
-          },
-          {
-            "fieldPath": "ws_id",
-            "columnName": "ws_id",
-            "affinity": "INTEGER",
-            "notNull": true
           }
         ],
         "primaryKey": {
@@ -518,7 +602,7 @@
             "columnNames": [
               "ws_id"
             ],
-            "createSql": "CREATE  INDEX `index_project_ws_id` ON `${TABLE_NAME}` (`ws_id`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_project_ws_id` ON `${TABLE_NAME}` (`ws_id`)"
           }
         ],
         "foreignKeys": [
@@ -534,11 +618,89 @@
             ]
           }
         ]
+      },
+      {
+        "tableName": "purchase",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `equip_id` INTEGER NOT NULL, `created` INTEGER, `finished` INTEGER, `amount` INTEGER NOT NULL, `price` REAL NOT NULL, `append` INTEGER NOT NULL, FOREIGN KEY(`equip_id`) REFERENCES `equipment`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "equip_id",
+            "columnName": "equip_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "created",
+            "columnName": "created",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "finished",
+            "columnName": "finished",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "amount",
+            "columnName": "amount",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "price",
+            "columnName": "price",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
+            "fieldPath": "append",
+            "columnName": "append",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_purchase_equip_id",
+            "unique": false,
+            "columnNames": [
+              "equip_id"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_purchase_equip_id` ON `${TABLE_NAME}` (`equip_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "equipment",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "equip_id"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
       }
     ],
+    "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, \"01e27bde1d836938f903e5b67d57a4e8\")"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '63525a30ca6d9303f797c94a1c5711c1')"
     ]
   }
 }

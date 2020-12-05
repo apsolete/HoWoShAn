@@ -6,11 +6,11 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
+import com.apsolete.myworkshop.db.entities.EqClass;
+import com.apsolete.myworkshop.db.entities.EqType;
 import com.apsolete.myworkshop.db.entities.Equipment;
-import com.apsolete.myworkshop.db.entities.EquipmentClass;
 import com.apsolete.myworkshop.db.entities.EquipmentInfo;
-import com.apsolete.myworkshop.db.entities.EquipmentParameter;
-import com.apsolete.myworkshop.db.entities.EquipmentType;
+import com.apsolete.myworkshop.db.entities.EquipmentParam;
 
 import java.util.List;
 
@@ -18,31 +18,31 @@ import java.util.List;
 public abstract class EquipmentDao
 {
     @Query("SELECT * FROM equip_class")
-    public abstract List<EquipmentClass> getAllEquipmentClasses();
+    public abstract List<EqClass> getAllEquipmentClasses();
     @Insert
-    public abstract long insertEquipmentClass(EquipmentClass eqclass);
+    public abstract long insertEquipmentClass(EqClass eqclass);
     @Update
-    public abstract int updateEquipmentClass(EquipmentClass eqclass);
+    public abstract int updateEquipmentClass(EqClass eqclass);
     @Delete
-    public abstract int deleteEquipmentClass(EquipmentClass eqclass);
+    public abstract int deleteEquipmentClass(EqClass eqclass);
 
     @Query("SELECT * FROM equip_type")
-    public abstract List<EquipmentType> getAllEquipmentTypes();
+    public abstract List<EqType> getAllEquipmentTypes();
     @Insert
-    public abstract long insertEquipmentType(EquipmentType eqtype);
+    public abstract long insertEquipmentType(EqType eqtype);
     @Update
-    public abstract int updateEquipmentType(EquipmentType eqtype);
+    public abstract int updateEquipmentType(EqType eqtype);
     @Delete
-    public abstract int deleteEquipmentType(EquipmentType eqtype);
+    public abstract int deleteEquipmentType(EqType eqtype);
 
     @Query("SELECT * FROM equip_param")
-    public abstract List<EquipmentParameter> getAllEquipmentParameters();
+    public abstract List<EquipmentParam> getAllEquipmentParams();
     @Insert
-    public abstract long insertEquipmentParameter(EquipmentParameter eqparam);
+    public abstract long insertEquipmentParam(EquipmentParam eqparam);
     @Update
-    public abstract int updateEquipmentParameter(EquipmentParameter eqparam);
+    public abstract int updateEquipmentParam(EquipmentParam eqparam);
     @Delete
-    public abstract int deleteEquipmentParameter(EquipmentParameter eqparam);
+    public abstract int deleteEquipmentParam(EquipmentParam eqparam);
 
     @Query("SELECT * FROM equipment")
     public abstract List<Equipment> getAllEquipments();

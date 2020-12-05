@@ -9,6 +9,7 @@ public class Workshop
 {
     @PrimaryKey(autoGenerate = true)
     public long id;
+
     @ColumnInfo
     public String name;
     @ColumnInfo
