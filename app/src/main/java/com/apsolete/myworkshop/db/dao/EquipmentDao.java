@@ -53,10 +53,12 @@ public abstract class EquipmentDao
     @Delete
     public abstract int deleteEquipment(Equipment equipment);
 
-    @Query("SELECT workshop.name AS ws_name, equip_class.name AS eq_class, equip_type.name AS eq_type, "+
-           "equipment.name, equipment.description, equipment.manufacturer, equipment.amount, equipment.storage "+
-           "FROM workshop, equip_class, equip_type, equipment "+
-           "WHERE workshop.id = :workshopId AND equipment.ws_id = :workshopId AND "+
-           "equipment.type_id = equip_type.id AND equip_type.class_id == equip_class.id")
+    @Query("SELECT ec.name AS classname, et.name AS typename, eq.name, eq.manufacturer, eq.number, " +
+            "ws.name AS workshop, st.name AS storage " +
+            "FROM equipment AS eq " +
+            "INNER JOIN equip_type AS et ON eq.type_id = et.id " +
+            "INNER JOIN equip_class AS ec ON et.class_id = ec.id " +
+            "INNER JOIN storage AS st ON eq.stor_id = st.id " +
+            "INNER JOIN workshop AS ws ON ws.id = :workshopId AND st.ws_id = ws.id")
     public abstract List<EquipmentInfo> getEquipmentByWorkshop(long workshopId);
 }

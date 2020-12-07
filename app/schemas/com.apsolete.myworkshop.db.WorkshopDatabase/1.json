@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "63525a30ca6d9303f797c94a1c5711c1",
+    "identityHash": "6b7984c7e9ec27aa0b4b5785dfcdc4f4",
     "entities": [
       {
         "tableName": "unit",
@@ -260,7 +260,7 @@
       },
       {
         "tableName": "equipment",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ws_id` INTEGER NOT NULL, `type_id` INTEGER NOT NULL, `name` TEXT, `manufacturer` TEXT, `description` TEXT, `amount` INTEGER NOT NULL, `storage` TEXT, FOREIGN KEY(`type_id`) REFERENCES `equip_type`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`ws_id`) REFERENCES `workshop`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `stor_id` INTEGER NOT NULL, `type_id` INTEGER NOT NULL, `name` TEXT, `manufacturer` TEXT, `description` TEXT, `number` INTEGER NOT NULL, `storage` TEXT, FOREIGN KEY(`type_id`) REFERENCES `equip_type`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`stor_id`) REFERENCES `workshop`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
@@ -269,8 +269,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "ws_id",
-            "columnName": "ws_id",
+            "fieldPath": "stor_id",
+            "columnName": "stor_id",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -299,8 +299,8 @@
             "notNull": false
           },
           {
-            "fieldPath": "amount",
-            "columnName": "amount",
+            "fieldPath": "number",
+            "columnName": "number",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -319,12 +319,12 @@
         },
         "indices": [
           {
-            "name": "index_equipment_ws_id",
+            "name": "index_equipment_stor_id",
             "unique": false,
             "columnNames": [
-              "ws_id"
+              "stor_id"
             ],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_equipment_ws_id` ON `${TABLE_NAME}` (`ws_id`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_equipment_stor_id` ON `${TABLE_NAME}` (`stor_id`)"
           },
           {
             "name": "index_equipment_type_id",
@@ -352,7 +352,7 @@
             "onDelete": "NO ACTION",
             "onUpdate": "NO ACTION",
             "columns": [
-              "ws_id"
+              "stor_id"
             ],
             "referencedColumns": [
               "id"
@@ -695,12 +695,71 @@
             ]
           }
         ]
+      },
+      {
+        "tableName": "storage",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `ws_id` INTEGER NOT NULL, `name` TEXT, `description` TEXT, FOREIGN KEY(`ws_id`) REFERENCES `workshop`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "ws_id",
+            "columnName": "ws_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_storage_ws_id",
+            "unique": false,
+            "columnNames": [
+              "ws_id"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_storage_ws_id` ON `${TABLE_NAME}` (`ws_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "workshop",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "ws_id"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '63525a30ca6d9303f797c94a1c5711c1')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '6b7984c7e9ec27aa0b4b5785dfcdc4f4')"
     ]
   }
 }
