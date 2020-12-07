@@ -14,7 +14,7 @@
     <fragment
         android:id="@+id/nav_workshop"
         android:name="com.apsolete.myworkshop.ui.workshop.WorkshopFragment"
-        android:label="@string/menu_equipment"
+        android:label="@string/menu_workshop"
         tools:layout="@layout/fragment_workshop" />
 
     <fragment
