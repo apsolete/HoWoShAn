@@ -22,7 +22,6 @@ import com.apsolete.myworkshop.db.entities.Storage;
 import com.apsolete.myworkshop.db.entities.Unit;
 import com.apsolete.myworkshop.db.entities.Workshop;
 
-
 @Database(version = 1,
         entities = {
         Unit.class,

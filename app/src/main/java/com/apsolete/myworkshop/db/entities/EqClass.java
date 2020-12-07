@@ -4,7 +4,7 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "equip_class")
+@Entity(tableName = "eclass")
 public class EqClass
 {
     @PrimaryKey(autoGenerate = true)

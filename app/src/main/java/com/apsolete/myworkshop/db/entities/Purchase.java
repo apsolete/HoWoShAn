@@ -17,13 +17,15 @@ public class Purchase
     public long equip_id;
 
     @ColumnInfo
-    public Date created;
-    @ColumnInfo
-    public Date finished;
-    @ColumnInfo
-    public int amount;
+    public int number;
     @ColumnInfo
     public double price;
     @ColumnInfo
+    public double perunit;
+    @ColumnInfo
     public boolean append;
+    @ColumnInfo
+    public Date created;
+    @ColumnInfo
+    public Date payed;
 }

@@ -17,7 +17,7 @@ import java.util.List;
 @Dao
 public abstract class EquipmentDao
 {
-    @Query("SELECT * FROM equip_class")
+    @Query("SELECT * FROM eclass")
     public abstract List<EqClass> getAllEquipmentClasses();
     @Insert
     public abstract long insertEquipmentClass(EqClass eqclass);
@@ -26,7 +26,7 @@ public abstract class EquipmentDao
     @Delete
     public abstract int deleteEquipmentClass(EqClass eqclass);
 
-    @Query("SELECT * FROM equip_type")
+    @Query("SELECT * FROM etype")
     public abstract List<EqType> getAllEquipmentTypes();
     @Insert
     public abstract long insertEquipmentType(EqType eqtype);
@@ -56,8 +56,8 @@ public abstract class EquipmentDao
     @Query("SELECT ec.name AS classname, et.name AS typename, eq.name, eq.manufacturer, eq.number, " +
             "ws.name AS workshop, st.name AS storage " +
             "FROM equipment AS eq " +
-            "INNER JOIN equip_type AS et ON eq.type_id = et.id " +
-            "INNER JOIN equip_class AS ec ON et.class_id = ec.id " +
+            "INNER JOIN etype AS et ON eq.type_id = et.id " +
+            "INNER JOIN eclass AS ec ON et.class_id = ec.id " +
             "INNER JOIN storage AS st ON eq.stor_id = st.id " +
             "INNER JOIN workshop AS ws ON ws.id = :workshopId AND st.ws_id = ws.id")
     public abstract List<EquipmentInfo> getEquipmentByWorkshop(long workshopId);

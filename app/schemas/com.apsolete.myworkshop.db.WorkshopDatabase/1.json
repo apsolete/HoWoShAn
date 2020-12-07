@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "6b7984c7e9ec27aa0b4b5785dfcdc4f4",
+    "identityHash": "7dee42a07aadedd5ce5db0c506f4f3b0",
     "entities": [
       {
         "tableName": "unit",
@@ -102,7 +102,7 @@
         ]
       },
       {
-        "tableName": "equip_class",
+        "tableName": "eclass",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT)",
         "fields": [
           {
@@ -128,8 +128,8 @@
         "foreignKeys": []
       },
       {
-        "tableName": "equip_type",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `class_id` INTEGER NOT NULL, `name` TEXT, FOREIGN KEY(`class_id`) REFERENCES `equip_class`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "tableName": "etype",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `class_id` INTEGER NOT NULL, `name` TEXT, FOREIGN KEY(`class_id`) REFERENCES `eclass`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
@@ -158,17 +158,17 @@
         },
         "indices": [
           {
-            "name": "index_equip_type_class_id",
+            "name": "index_etype_class_id",
             "unique": false,
             "columnNames": [
               "class_id"
             ],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_equip_type_class_id` ON `${TABLE_NAME}` (`class_id`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_etype_class_id` ON `${TABLE_NAME}` (`class_id`)"
           }
         ],
         "foreignKeys": [
           {
-            "table": "equip_class",
+            "table": "eclass",
             "onDelete": "NO ACTION",
             "onUpdate": "NO ACTION",
             "columns": [
@@ -182,7 +182,7 @@
       },
       {
         "tableName": "param_set",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `type_id` INTEGER NOT NULL, `param_id` INTEGER NOT NULL, `name` TEXT, FOREIGN KEY(`type_id`) REFERENCES `equip_type`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`param_id`) REFERENCES `parameter`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `type_id` INTEGER NOT NULL, `param_id` INTEGER NOT NULL, `name` TEXT, FOREIGN KEY(`type_id`) REFERENCES `etype`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`param_id`) REFERENCES `parameter`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
@@ -235,7 +235,7 @@
         ],
         "foreignKeys": [
           {
-            "table": "equip_type",
+            "table": "etype",
             "onDelete": "NO ACTION",
             "onUpdate": "NO ACTION",
             "columns": [
@@ -260,7 +260,7 @@
       },
       {
         "tableName": "equipment",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `stor_id` INTEGER NOT NULL, `type_id` INTEGER NOT NULL, `name` TEXT, `manufacturer` TEXT, `description` TEXT, `number` INTEGER NOT NULL, `storage` TEXT, FOREIGN KEY(`type_id`) REFERENCES `equip_type`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`stor_id`) REFERENCES `workshop`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `stor_id` INTEGER NOT NULL, `type_id` INTEGER NOT NULL, `name` TEXT, `manufacturer` TEXT, `description` TEXT, `number` INTEGER NOT NULL, `storage` TEXT, FOREIGN KEY(`type_id`) REFERENCES `etype`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`stor_id`) REFERENCES `workshop`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
@@ -337,7 +337,7 @@
         ],
         "foreignKeys": [
           {
-            "table": "equip_type",
+            "table": "etype",
             "onDelete": "NO ACTION",
             "onUpdate": "NO ACTION",
             "columns": [
@@ -362,7 +362,7 @@
       },
       {
         "tableName": "equip_param",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `type_id` INTEGER NOT NULL, `param_id` INTEGER NOT NULL, `value` TEXT, FOREIGN KEY(`type_id`) REFERENCES `equip_type`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`param_id`) REFERENCES `parameter`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `type_id` INTEGER NOT NULL, `param_id` INTEGER NOT NULL, `value` TEXT, FOREIGN KEY(`type_id`) REFERENCES `etype`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`param_id`) REFERENCES `parameter`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
@@ -415,7 +415,7 @@
         ],
         "foreignKeys": [
           {
-            "table": "equip_type",
+            "table": "etype",
             "onDelete": "NO ACTION",
             "onUpdate": "NO ACTION",
             "columns": [
@@ -621,7 +621,7 @@
       },
       {
         "tableName": "purchase",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `equip_id` INTEGER NOT NULL, `created` INTEGER, `finished` INTEGER, `amount` INTEGER NOT NULL, `price` REAL NOT NULL, `append` INTEGER NOT NULL, FOREIGN KEY(`equip_id`) REFERENCES `equipment`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `equip_id` INTEGER NOT NULL, `number` INTEGER NOT NULL, `price` REAL NOT NULL, `perunit` REAL NOT NULL, `append` INTEGER NOT NULL, `created` INTEGER, `payed` INTEGER, FOREIGN KEY(`equip_id`) REFERENCES `equipment`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
@@ -636,20 +636,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "created",
-            "columnName": "created",
-            "affinity": "INTEGER",
-            "notNull": false
-          },
-          {
-            "fieldPath": "finished",
-            "columnName": "finished",
-            "affinity": "INTEGER",
-            "notNull": false
-          },
-          {
-            "fieldPath": "amount",
-            "columnName": "amount",
+            "fieldPath": "number",
+            "columnName": "number",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -660,10 +648,28 @@
             "notNull": true
           },
           {
+            "fieldPath": "perunit",
+            "columnName": "perunit",
+            "affinity": "REAL",
+            "notNull": true
+          },
+          {
             "fieldPath": "append",
             "columnName": "append",
             "affinity": "INTEGER",
             "notNull": true
+          },
+          {
+            "fieldPath": "created",
+            "columnName": "created",
+            "affinity": "INTEGER",
+            "notNull": false
+          },
+          {
+            "fieldPath": "payed",
+            "columnName": "payed",
+            "affinity": "INTEGER",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -759,7 +765,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '6b7984c7e9ec27aa0b4b5785dfcdc4f4')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '7dee42a07aadedd5ce5db0c506f4f3b0')"
     ]
   }
 }
