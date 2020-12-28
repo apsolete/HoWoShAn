@@ -5,9 +5,9 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "etype",
-        foreignKeys = @ForeignKey(entity = EqClass.class, parentColumns = "id", childColumns = "class_id"))
-public class EqType
+@Entity(tableName = "equiptype",
+        foreignKeys = @ForeignKey(entity = EquipClass.class, parentColumns = "id", childColumns = "class_id"))
+public class EquipType
 {
     @PrimaryKey(autoGenerate = true)
     public long id;

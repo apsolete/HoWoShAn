@@ -5,11 +5,11 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "project_equip",
+@Entity(tableName = "projequipments",
         foreignKeys = {
                 @ForeignKey(entity = Project.class, parentColumns = "id", childColumns = "project_id"),
                 @ForeignKey(entity = Equipment.class, parentColumns = "id", childColumns = "equip_id")})
-public class ProjectEquipment
+public class ProjectEquipments
 {
     @PrimaryKey(autoGenerate = true)
     public long id;

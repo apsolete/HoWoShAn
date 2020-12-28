@@ -5,7 +5,10 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "equipment", foreignKeys = {@ForeignKey(entity = EqType.class, parentColumns = "id", childColumns = "type_id"), @ForeignKey(entity = Workshop.class, parentColumns = "id", childColumns = "stor_id")})
+@Entity(tableName = "equipment",
+        foreignKeys = {
+                @ForeignKey(entity = EquipType.class, parentColumns = "id", childColumns = "type_id"),
+                @ForeignKey(entity = Workshop.class, parentColumns = "id", childColumns = "stor_id")})
 public class Equipment
 {
     @PrimaryKey(autoGenerate = true)

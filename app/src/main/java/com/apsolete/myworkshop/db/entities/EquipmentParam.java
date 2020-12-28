@@ -7,7 +7,7 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "equip_param",
         foreignKeys = {
-                @ForeignKey(entity = EqType.class, parentColumns = "id", childColumns = "type_id"),
+                @ForeignKey(entity = EquipType.class, parentColumns = "id", childColumns = "type_id"),
                 @ForeignKey(entity = Parameter.class, parentColumns = "id", childColumns = "param_id")})
 public class EquipmentParam
 {

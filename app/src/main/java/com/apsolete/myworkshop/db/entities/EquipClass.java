@@ -4,8 +4,8 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "eclass")
-public class EqClass
+@Entity(tableName = "equipclass")
+public class EquipClass
 {
     @PrimaryKey(autoGenerate = true)
     public long id;

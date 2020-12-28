@@ -5,11 +5,11 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "param_set",
+@Entity(tableName = "parameterset",
         foreignKeys = {
-                @ForeignKey(entity = EqType.class, parentColumns = "id", childColumns = "type_id"),
+                @ForeignKey(entity = EquipType.class, parentColumns = "id", childColumns = "type_id"),
                 @ForeignKey(entity = Parameter.class, parentColumns = "id", childColumns = "param_id")})
-public class ParamSet
+public class ParameterSet
 {
     @PrimaryKey(autoGenerate = true)
     public long id;

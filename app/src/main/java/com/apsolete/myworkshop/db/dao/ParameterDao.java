@@ -6,7 +6,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.apsolete.myworkshop.db.entities.ParamSet;
+import com.apsolete.myworkshop.db.entities.ParameterSet;
 import com.apsolete.myworkshop.db.entities.Parameter;
 import com.apsolete.myworkshop.db.entities.Unit;
 
@@ -33,12 +33,12 @@ public abstract class ParameterDao
     @Delete
     public abstract int deleteParameter(Parameter param);
 
-    @Query("SELECT * FROM param_set WHERE param_id = :paramId")
-    public abstract List<ParamSet> getParamSet(long paramId);
+    @Query("SELECT * FROM parameterset WHERE param_id = :paramId")
+    public abstract List<ParameterSet> getParamSet(long paramId);
     @Insert
-    public abstract long insertParamSet(ParamSet paramSet);
+    public abstract long insertParamSet(ParameterSet parameterSet);
     @Update
-    public abstract int updateParamSet(ParamSet paramSet);
+    public abstract int updateParamSet(ParameterSet parameterSet);
     @Delete
-    public abstract int deleteParamSet(ParamSet paramSet);
+    public abstract int deleteParamSet(ParameterSet parameterSet);
 }
