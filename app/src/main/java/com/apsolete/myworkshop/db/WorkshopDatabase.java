@@ -9,10 +9,11 @@ import com.apsolete.myworkshop.db.dao.EquipmentDao;
 import com.apsolete.myworkshop.db.dao.ParameterDao;
 import com.apsolete.myworkshop.db.dao.ProjectDao;
 import com.apsolete.myworkshop.db.dao.WorkshopDao;
+import com.apsolete.myworkshop.db.entities.EquipType;
 import com.apsolete.myworkshop.db.entities.Equipment;
 import com.apsolete.myworkshop.db.entities.EquipClass;
 import com.apsolete.myworkshop.db.entities.EquipmentParam;
-import com.apsolete.myworkshop.db.entities.EquipType;
+import com.apsolete.myworkshop.db.entities.EquipKind;
 import com.apsolete.myworkshop.db.entities.ParameterSet;
 import com.apsolete.myworkshop.db.entities.ProjectEquipments;
 import com.apsolete.myworkshop.db.entities.Parameter;
@@ -26,8 +27,9 @@ import com.apsolete.myworkshop.db.entities.Workshop;
         entities = {
         Unit.class,
         Parameter.class,
-        EquipClass.class,
         EquipType.class,
+        EquipClass.class,
+        EquipKind.class,
         ParameterSet.class,
         Equipment.class,
         EquipmentParam.class,

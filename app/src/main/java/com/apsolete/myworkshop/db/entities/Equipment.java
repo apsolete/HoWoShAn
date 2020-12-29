@@ -7,16 +7,16 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "equipment",
         foreignKeys = {
-                @ForeignKey(entity = EquipType.class, parentColumns = "id", childColumns = "type_id"),
+                @ForeignKey(entity = EquipKind.class, parentColumns = "id", childColumns = "kind_id"),
                 @ForeignKey(entity = Workshop.class, parentColumns = "id", childColumns = "stor_id")})
 public class Equipment
 {
     @PrimaryKey(autoGenerate = true)
     public long id;
     @ColumnInfo(index = true)
-    public long stor_id;
+    public long kind_id;
     @ColumnInfo(index = true)
-    public long type_id;
+    public long stor_id;
 
     @ColumnInfo
     public String name;

@@ -7,7 +7,7 @@ import androidx.room.Query;
 import androidx.room.Update;
 
 import com.apsolete.myworkshop.db.entities.EquipClass;
-import com.apsolete.myworkshop.db.entities.EquipType;
+import com.apsolete.myworkshop.db.entities.EquipKind;
 import com.apsolete.myworkshop.db.entities.Equipment;
 import com.apsolete.myworkshop.db.entities.EquipmentInfo;
 import com.apsolete.myworkshop.db.entities.EquipmentParam;
@@ -26,14 +26,14 @@ public abstract class EquipmentDao
     @Delete
     public abstract int deleteEquipmentClass(EquipClass eqclass);
 
-    @Query("SELECT * FROM equiptype")
-    public abstract List<EquipType> getAllEquipmentTypes();
+    @Query("SELECT * FROM EquipKind")
+    public abstract List<EquipKind> getAllEquipmentTypes();
     @Insert
-    public abstract long insertEquipmentType(EquipType eqtype);
+    public abstract long insertEquipmentType(EquipKind eqtype);
     @Update
-    public abstract int updateEquipmentType(EquipType eqtype);
+    public abstract int updateEquipmentType(EquipKind eqtype);
     @Delete
-    public abstract int deleteEquipmentType(EquipType eqtype);
+    public abstract int deleteEquipmentType(EquipKind eqtype);
 
     @Query("SELECT * FROM equip_param")
     public abstract List<EquipmentParam> getAllEquipmentParams();
@@ -53,11 +53,12 @@ public abstract class EquipmentDao
     @Delete
     public abstract int deleteEquipment(Equipment equipment);
 
-    @Query("SELECT ec.name AS classname, et.name AS typename, eq.name, eq.manufacturer, eq.number, " +
+    @Query("SELECT et.name AS typename, ec.name AS classname, ek.name AS kindname, eq.name, eq.manufacturer, eq.number, " +
             "ws.name AS workshop, st.name AS storage " +
             "FROM equipment AS eq " +
-            "INNER JOIN equiptype AS et ON eq.type_id = et.id " +
-            "INNER JOIN equipclass AS ec ON et.class_id = ec.id " +
+            "INNER JOIN equipkind AS ek ON eq.kind_id = ek.id " +
+            "INNER JOIN equipclass AS ec ON ek.class_id = ec.id " +
+            "INNER JOIN equiptype AS et ON ec.type_id = et.id " +
             "INNER JOIN storage AS st ON eq.stor_id = st.id " +
             "INNER JOIN workshop AS ws ON ws.id = :workshopId AND st.ws_id = ws.id")
     public abstract List<EquipmentInfo> getEquipmentByWorkshop(long workshopId);

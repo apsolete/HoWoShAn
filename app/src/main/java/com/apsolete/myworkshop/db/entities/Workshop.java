@@ -13,7 +13,7 @@ public class Workshop
     @ColumnInfo
     public String name;
     @ColumnInfo
-    public String description;
-    @ColumnInfo
     public String address;
+    @ColumnInfo
+    public String description;
 }

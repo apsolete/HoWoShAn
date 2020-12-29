@@ -2,11 +2,11 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "7dee42a07aadedd5ce5db0c506f4f3b0",
+    "identityHash": "8cca53cb8dc1bf2151710ba28df2b1aa",
     "entities": [
       {
         "tableName": "unit",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `symbol` TEXT, `name` TEXT, `description` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `symbol` TEXT, `name` TEXT)",
         "fields": [
           {
             "fieldPath": "id",
@@ -23,12 +23,6 @@
           {
             "fieldPath": "name",
             "columnName": "name",
-            "affinity": "TEXT",
-            "notNull": false
-          },
-          {
-            "fieldPath": "description",
-            "columnName": "description",
             "affinity": "TEXT",
             "notNull": false
           }
@@ -102,7 +96,7 @@
         ]
       },
       {
-        "tableName": "eclass",
+        "tableName": "equiptype",
         "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT)",
         "fields": [
           {
@@ -128,8 +122,61 @@
         "foreignKeys": []
       },
       {
-        "tableName": "etype",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `class_id` INTEGER NOT NULL, `name` TEXT, FOREIGN KEY(`class_id`) REFERENCES `eclass`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "tableName": "equipclass",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `type_id` INTEGER NOT NULL, `name` TEXT, FOREIGN KEY(`type_id`) REFERENCES `equiptype`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "type_id",
+            "columnName": "type_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "name",
+            "columnName": "name",
+            "affinity": "TEXT",
+            "notNull": false
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_equipclass_type_id",
+            "unique": false,
+            "columnNames": [
+              "type_id"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_equipclass_type_id` ON `${TABLE_NAME}` (`type_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "equiptype",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "type_id"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
+      },
+      {
+        "tableName": "equipkind",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `class_id` INTEGER NOT NULL, `name` TEXT, FOREIGN KEY(`class_id`) REFERENCES `equipclass`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
@@ -158,17 +205,17 @@
         },
         "indices": [
           {
-            "name": "index_etype_class_id",
+            "name": "index_equipkind_class_id",
             "unique": false,
             "columnNames": [
               "class_id"
             ],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_etype_class_id` ON `${TABLE_NAME}` (`class_id`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_equipkind_class_id` ON `${TABLE_NAME}` (`class_id`)"
           }
         ],
         "foreignKeys": [
           {
-            "table": "eclass",
+            "table": "equipclass",
             "onDelete": "NO ACTION",
             "onUpdate": "NO ACTION",
             "columns": [
@@ -181,8 +228,8 @@
         ]
       },
       {
-        "tableName": "param_set",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `type_id` INTEGER NOT NULL, `param_id` INTEGER NOT NULL, `name` TEXT, FOREIGN KEY(`type_id`) REFERENCES `etype`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`param_id`) REFERENCES `parameter`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "tableName": "parameterset",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `kind_id` INTEGER NOT NULL, `param_id` INTEGER NOT NULL, `name` TEXT, FOREIGN KEY(`kind_id`) REFERENCES `equipkind`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`param_id`) REFERENCES `parameter`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
@@ -191,8 +238,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "type_id",
-            "columnName": "type_id",
+            "fieldPath": "kind_id",
+            "columnName": "kind_id",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -217,29 +264,29 @@
         },
         "indices": [
           {
-            "name": "index_param_set_type_id",
+            "name": "index_parameterset_kind_id",
             "unique": false,
             "columnNames": [
-              "type_id"
+              "kind_id"
             ],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_param_set_type_id` ON `${TABLE_NAME}` (`type_id`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_parameterset_kind_id` ON `${TABLE_NAME}` (`kind_id`)"
           },
           {
-            "name": "index_param_set_param_id",
+            "name": "index_parameterset_param_id",
             "unique": false,
             "columnNames": [
               "param_id"
             ],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_param_set_param_id` ON `${TABLE_NAME}` (`param_id`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_parameterset_param_id` ON `${TABLE_NAME}` (`param_id`)"
           }
         ],
         "foreignKeys": [
           {
-            "table": "etype",
+            "table": "equipkind",
             "onDelete": "NO ACTION",
             "onUpdate": "NO ACTION",
             "columns": [
-              "type_id"
+              "kind_id"
             ],
             "referencedColumns": [
               "id"
@@ -260,7 +307,7 @@
       },
       {
         "tableName": "equipment",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `stor_id` INTEGER NOT NULL, `type_id` INTEGER NOT NULL, `name` TEXT, `manufacturer` TEXT, `description` TEXT, `number` INTEGER NOT NULL, `storage` TEXT, FOREIGN KEY(`type_id`) REFERENCES `etype`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`stor_id`) REFERENCES `workshop`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `kind_id` INTEGER NOT NULL, `stor_id` INTEGER NOT NULL, `name` TEXT, `manufacturer` TEXT, `description` TEXT, `number` INTEGER NOT NULL, `storage` TEXT, FOREIGN KEY(`kind_id`) REFERENCES `equipkind`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`stor_id`) REFERENCES `workshop`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
@@ -269,14 +316,14 @@
             "notNull": true
           },
           {
-            "fieldPath": "stor_id",
-            "columnName": "stor_id",
+            "fieldPath": "kind_id",
+            "columnName": "kind_id",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "type_id",
-            "columnName": "type_id",
+            "fieldPath": "stor_id",
+            "columnName": "stor_id",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -319,29 +366,29 @@
         },
         "indices": [
           {
+            "name": "index_equipment_kind_id",
+            "unique": false,
+            "columnNames": [
+              "kind_id"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_equipment_kind_id` ON `${TABLE_NAME}` (`kind_id`)"
+          },
+          {
             "name": "index_equipment_stor_id",
             "unique": false,
             "columnNames": [
               "stor_id"
             ],
             "createSql": "CREATE INDEX IF NOT EXISTS `index_equipment_stor_id` ON `${TABLE_NAME}` (`stor_id`)"
-          },
-          {
-            "name": "index_equipment_type_id",
-            "unique": false,
-            "columnNames": [
-              "type_id"
-            ],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_equipment_type_id` ON `${TABLE_NAME}` (`type_id`)"
           }
         ],
         "foreignKeys": [
           {
-            "table": "etype",
+            "table": "equipkind",
             "onDelete": "NO ACTION",
             "onUpdate": "NO ACTION",
             "columns": [
-              "type_id"
+              "kind_id"
             ],
             "referencedColumns": [
               "id"
@@ -362,7 +409,7 @@
       },
       {
         "tableName": "equip_param",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `type_id` INTEGER NOT NULL, `param_id` INTEGER NOT NULL, `value` TEXT, FOREIGN KEY(`type_id`) REFERENCES `etype`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`param_id`) REFERENCES `parameter`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `equip_id` INTEGER NOT NULL, `parset_id` INTEGER NOT NULL, `value` TEXT, FOREIGN KEY(`equip_id`) REFERENCES `equipment`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`parset_id`) REFERENCES `parameterset`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
@@ -371,14 +418,14 @@
             "notNull": true
           },
           {
-            "fieldPath": "type_id",
-            "columnName": "type_id",
+            "fieldPath": "equip_id",
+            "columnName": "equip_id",
             "affinity": "INTEGER",
             "notNull": true
           },
           {
-            "fieldPath": "param_id",
-            "columnName": "param_id",
+            "fieldPath": "parset_id",
+            "columnName": "parset_id",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -397,40 +444,40 @@
         },
         "indices": [
           {
-            "name": "index_equip_param_type_id",
+            "name": "index_equip_param_equip_id",
             "unique": false,
             "columnNames": [
-              "type_id"
+              "equip_id"
             ],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_equip_param_type_id` ON `${TABLE_NAME}` (`type_id`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_equip_param_equip_id` ON `${TABLE_NAME}` (`equip_id`)"
           },
           {
-            "name": "index_equip_param_param_id",
+            "name": "index_equip_param_parset_id",
             "unique": false,
             "columnNames": [
-              "param_id"
+              "parset_id"
             ],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_equip_param_param_id` ON `${TABLE_NAME}` (`param_id`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_equip_param_parset_id` ON `${TABLE_NAME}` (`parset_id`)"
           }
         ],
         "foreignKeys": [
           {
-            "table": "etype",
+            "table": "equipment",
             "onDelete": "NO ACTION",
             "onUpdate": "NO ACTION",
             "columns": [
-              "type_id"
+              "equip_id"
             ],
             "referencedColumns": [
               "id"
             ]
           },
           {
-            "table": "parameter",
+            "table": "parameterset",
             "onDelete": "NO ACTION",
             "onUpdate": "NO ACTION",
             "columns": [
-              "param_id"
+              "parset_id"
             ],
             "referencedColumns": [
               "id"
@@ -439,8 +486,8 @@
         ]
       },
       {
-        "tableName": "project_equip",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `project_id` INTEGER NOT NULL, `equip_id` INTEGER NOT NULL, `number` INTEGER NOT NULL, `expend` INTEGER NOT NULL, FOREIGN KEY(`project_id`) REFERENCES `project`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`equip_id`) REFERENCES `equipment`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "tableName": "projequipments",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `proj_id` INTEGER NOT NULL, `equip_id` INTEGER NOT NULL, `number` INTEGER NOT NULL, `expend` INTEGER NOT NULL, `expended` INTEGER NOT NULL, `description` TEXT, FOREIGN KEY(`proj_id`) REFERENCES `project`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`equip_id`) REFERENCES `equipment`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
@@ -449,8 +496,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "project_id",
-            "columnName": "project_id",
+            "fieldPath": "proj_id",
+            "columnName": "proj_id",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -471,6 +518,18 @@
             "columnName": "expend",
             "affinity": "INTEGER",
             "notNull": true
+          },
+          {
+            "fieldPath": "expended",
+            "columnName": "expended",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "description",
+            "columnName": "description",
+            "affinity": "TEXT",
+            "notNull": false
           }
         ],
         "primaryKey": {
@@ -481,20 +540,20 @@
         },
         "indices": [
           {
-            "name": "index_project_equip_project_id",
+            "name": "index_projequipments_proj_id",
             "unique": false,
             "columnNames": [
-              "project_id"
+              "proj_id"
             ],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_project_equip_project_id` ON `${TABLE_NAME}` (`project_id`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_projequipments_proj_id` ON `${TABLE_NAME}` (`proj_id`)"
           },
           {
-            "name": "index_project_equip_equip_id",
+            "name": "index_projequipments_equip_id",
             "unique": false,
             "columnNames": [
               "equip_id"
             ],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_project_equip_equip_id` ON `${TABLE_NAME}` (`equip_id`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_projequipments_equip_id` ON `${TABLE_NAME}` (`equip_id`)"
           }
         ],
         "foreignKeys": [
@@ -503,7 +562,7 @@
             "onDelete": "NO ACTION",
             "onUpdate": "NO ACTION",
             "columns": [
-              "project_id"
+              "proj_id"
             ],
             "referencedColumns": [
               "id"
@@ -524,7 +583,7 @@
       },
       {
         "tableName": "workshop",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `description` TEXT, `address` TEXT)",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `name` TEXT, `address` TEXT, `description` TEXT)",
         "fields": [
           {
             "fieldPath": "id",
@@ -539,14 +598,14 @@
             "notNull": false
           },
           {
-            "fieldPath": "description",
-            "columnName": "description",
+            "fieldPath": "address",
+            "columnName": "address",
             "affinity": "TEXT",
             "notNull": false
           },
           {
-            "fieldPath": "address",
-            "columnName": "address",
+            "fieldPath": "description",
+            "columnName": "description",
             "affinity": "TEXT",
             "notNull": false
           }
@@ -621,7 +680,7 @@
       },
       {
         "tableName": "purchase",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `equip_id` INTEGER NOT NULL, `number` INTEGER NOT NULL, `price` REAL NOT NULL, `perunit` REAL NOT NULL, `append` INTEGER NOT NULL, `created` INTEGER, `payed` INTEGER, FOREIGN KEY(`equip_id`) REFERENCES `equipment`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `equip_id` INTEGER NOT NULL, `number` INTEGER NOT NULL, `price` REAL NOT NULL, `peritem` REAL NOT NULL, `append` INTEGER NOT NULL, `created` INTEGER, `payed` INTEGER, FOREIGN KEY(`equip_id`) REFERENCES `equipment`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
@@ -648,8 +707,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "perunit",
-            "columnName": "perunit",
+            "fieldPath": "peritem",
+            "columnName": "peritem",
             "affinity": "REAL",
             "notNull": true
           },
@@ -765,7 +824,7 @@
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '7dee42a07aadedd5ce5db0c506f4f3b0')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8cca53cb8dc1bf2151710ba28df2b1aa')"
     ]
   }
 }

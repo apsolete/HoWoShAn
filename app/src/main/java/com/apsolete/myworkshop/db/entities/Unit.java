@@ -14,6 +14,6 @@ public class Unit
     public String symbol;
     @ColumnInfo
     public String name;
-    @ColumnInfo
-    public String description;
+    //@ColumnInfo
+    //public String description;
 }

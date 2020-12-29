@@ -7,16 +7,16 @@ import androidx.room.PrimaryKey;
 
 @Entity(tableName = "equip_param",
         foreignKeys = {
-                @ForeignKey(entity = EquipType.class, parentColumns = "id", childColumns = "type_id"),
-                @ForeignKey(entity = Parameter.class, parentColumns = "id", childColumns = "param_id")})
+                @ForeignKey(entity = Equipment.class, parentColumns = "id", childColumns = "equip_id"),
+                @ForeignKey(entity = ParameterSet.class, parentColumns = "id", childColumns = "parset_id")})
 public class EquipmentParam
 {
     @PrimaryKey(autoGenerate = true)
     public long id;
     @ColumnInfo(index = true)
-    public long type_id;
+    public long equip_id;
     @ColumnInfo(index = true)
-    public long param_id;
+    public long parset_id;
 
     @ColumnInfo
     public String value;

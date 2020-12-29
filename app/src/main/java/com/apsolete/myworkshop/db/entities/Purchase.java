@@ -21,7 +21,7 @@ public class Purchase
     @ColumnInfo
     public double price;
     @ColumnInfo
-    public double perunit;
+    public double peritem;
     @ColumnInfo
     public boolean append;
     @ColumnInfo
