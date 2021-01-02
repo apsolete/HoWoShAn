@@ -2,7 +2,7 @@
   "formatVersion": 1,
   "database": {
     "version": 1,
-    "identityHash": "8cca53cb8dc1bf2151710ba28df2b1aa",
+    "identityHash": "52209e6ed53547e9acef486913a9cb16",
     "entities": [
       {
         "tableName": "unit",
@@ -486,8 +486,8 @@
         ]
       },
       {
-        "tableName": "projequipments",
-        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `proj_id` INTEGER NOT NULL, `equip_id` INTEGER NOT NULL, `number` INTEGER NOT NULL, `expend` INTEGER NOT NULL, `expended` INTEGER NOT NULL, `description` TEXT, FOREIGN KEY(`proj_id`) REFERENCES `project`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`equip_id`) REFERENCES `equipment`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "tableName": "projectequipments",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `pritem_id` INTEGER NOT NULL, `equip_id` INTEGER NOT NULL, `number` INTEGER NOT NULL, `expend` INTEGER NOT NULL, `expended` INTEGER NOT NULL, `description` TEXT, FOREIGN KEY(`pritem_id`) REFERENCES `projectitem`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION , FOREIGN KEY(`equip_id`) REFERENCES `equipment`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
         "fields": [
           {
             "fieldPath": "id",
@@ -496,8 +496,8 @@
             "notNull": true
           },
           {
-            "fieldPath": "proj_id",
-            "columnName": "proj_id",
+            "fieldPath": "pritem_id",
+            "columnName": "pritem_id",
             "affinity": "INTEGER",
             "notNull": true
           },
@@ -540,29 +540,29 @@
         },
         "indices": [
           {
-            "name": "index_projequipments_proj_id",
+            "name": "index_projectequipments_pritem_id",
             "unique": false,
             "columnNames": [
-              "proj_id"
+              "pritem_id"
             ],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_projequipments_proj_id` ON `${TABLE_NAME}` (`proj_id`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_projectequipments_pritem_id` ON `${TABLE_NAME}` (`pritem_id`)"
           },
           {
-            "name": "index_projequipments_equip_id",
+            "name": "index_projectequipments_equip_id",
             "unique": false,
             "columnNames": [
               "equip_id"
             ],
-            "createSql": "CREATE INDEX IF NOT EXISTS `index_projequipments_equip_id` ON `${TABLE_NAME}` (`equip_id`)"
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_projectequipments_equip_id` ON `${TABLE_NAME}` (`equip_id`)"
           }
         ],
         "foreignKeys": [
           {
-            "table": "project",
+            "table": "projectitem",
             "onDelete": "NO ACTION",
             "onUpdate": "NO ACTION",
             "columns": [
-              "proj_id"
+              "pritem_id"
             ],
             "referencedColumns": [
               "id"
@@ -819,12 +819,59 @@
             ]
           }
         ]
+      },
+      {
+        "tableName": "projectitem",
+        "createSql": "CREATE TABLE IF NOT EXISTS `${TABLE_NAME}` (`id` INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, `proj_id` INTEGER NOT NULL, FOREIGN KEY(`proj_id`) REFERENCES `project`(`id`) ON UPDATE NO ACTION ON DELETE NO ACTION )",
+        "fields": [
+          {
+            "fieldPath": "id",
+            "columnName": "id",
+            "affinity": "INTEGER",
+            "notNull": true
+          },
+          {
+            "fieldPath": "proj_id",
+            "columnName": "proj_id",
+            "affinity": "INTEGER",
+            "notNull": true
+          }
+        ],
+        "primaryKey": {
+          "columnNames": [
+            "id"
+          ],
+          "autoGenerate": true
+        },
+        "indices": [
+          {
+            "name": "index_projectitem_proj_id",
+            "unique": false,
+            "columnNames": [
+              "proj_id"
+            ],
+            "createSql": "CREATE INDEX IF NOT EXISTS `index_projectitem_proj_id` ON `${TABLE_NAME}` (`proj_id`)"
+          }
+        ],
+        "foreignKeys": [
+          {
+            "table": "project",
+            "onDelete": "NO ACTION",
+            "onUpdate": "NO ACTION",
+            "columns": [
+              "proj_id"
+            ],
+            "referencedColumns": [
+              "id"
+            ]
+          }
+        ]
       }
     ],
     "views": [],
     "setupQueries": [
       "CREATE TABLE IF NOT EXISTS room_master_table (id INTEGER PRIMARY KEY,identity_hash TEXT)",
-      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '8cca53cb8dc1bf2151710ba28df2b1aa')"
+      "INSERT OR REPLACE INTO room_master_table (id,identity_hash) VALUES(42, '52209e6ed53547e9acef486913a9cb16')"
     ]
   }
 }

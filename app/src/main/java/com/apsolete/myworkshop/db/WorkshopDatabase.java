@@ -18,6 +18,7 @@ import com.apsolete.myworkshop.db.entities.ParameterSet;
 import com.apsolete.myworkshop.db.entities.ProjectEquipments;
 import com.apsolete.myworkshop.db.entities.Parameter;
 import com.apsolete.myworkshop.db.entities.Project;
+import com.apsolete.myworkshop.db.entities.ProjectItem;
 import com.apsolete.myworkshop.db.entities.Purchase;
 import com.apsolete.myworkshop.db.entities.Storage;
 import com.apsolete.myworkshop.db.entities.Unit;
@@ -37,7 +38,8 @@ import com.apsolete.myworkshop.db.entities.Workshop;
         Workshop.class,
         Project.class,
         Purchase.class,
-        Storage.class})
+        Storage.class,
+        ProjectItem.class})
 @TypeConverters({Converters.class})
 public abstract class WorkshopDatabase extends RoomDatabase
 {
