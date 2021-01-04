@@ -5,9 +5,9 @@ import android.app.Application;
 import androidx.annotation.NonNull;
 import androidx.lifecycle.AndroidViewModel;
 
-public class EquipmentKindViewModel extends AndroidViewModel
+public class KindsViewModel extends AndroidViewModel
 {
-    public EquipmentKindViewModel(@NonNull Application application)
+    public KindsViewModel(@NonNull Application application)
     {
         super(application);
     }

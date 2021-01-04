@@ -3,10 +3,10 @@ package com.apsolete.myworkshop.ui.equipment.params;
 import com.apsolete.myworkshop.R;
 import com.apsolete.myworkshop.common.CustomFragment;
 
-public class UnitFragment extends CustomFragment<UnitViewModel>
+public class ParameterFragment extends CustomFragment<ParameterViewModel>
 {
-    public UnitFragment()
+    public ParameterFragment()
     {
-        super(R.layout.fragment_unit);
+        super(R.layout.fragment_parameter);
     }
 }
