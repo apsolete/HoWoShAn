@@ -1,14 +1,19 @@
 package com.apsolete.myworkshop.ui.equipment.params;
 
 import android.app.Application;
-
 import androidx.annotation.NonNull;
-import androidx.lifecycle.AndroidViewModel;
+import com.apsolete.customui.CustomViewModel;
 
-public class ParametersViewModel extends AndroidViewModel
+public class ParametersViewModel extends CustomViewModel
 {
     public ParametersViewModel(@NonNull Application application)
     {
         super(application);
+    }
+
+    @Override
+    public void start()
+    {
+
     }
 }

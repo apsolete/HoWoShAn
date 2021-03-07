@@ -1,12 +1,11 @@
 package com.apsolete.myworkshop.ui.materials;
 
 import android.app.Application;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.AndroidViewModel;
+import com.apsolete.customui.CustomViewModel;
 
-public class MaterialsViewModel extends AndroidViewModel
+public class MaterialsViewModel extends CustomViewModel
 {
 
     private MutableLiveData<String> mText;
@@ -16,6 +15,12 @@ public class MaterialsViewModel extends AndroidViewModel
         super(application);
         mText = new MutableLiveData<>();
         mText.setValue("This is Materials and Accessories fragment");
+    }
+
+    @Override
+    public void start()
+    {
+
     }
 
     public LiveData<String> getText()

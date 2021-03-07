@@ -4,25 +4,30 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
 
 import com.apsolete.myworkshop.R;
-import com.apsolete.myworkshop.common.CustomFragment;
+import com.apsolete.customui.CustomFragment;
 
 public class EquipmentFragment extends CustomFragment<EquipmentViewModel>
 {
     public EquipmentFragment()
     {
-        super(R.layout.fragment_equipment);
+        super(R.layout.fragment_equipment, 0, EquipmentViewModel.class);
     }
 
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+    public EquipmentViewModel getViewModel()
     {
-        View root = createView(inflater, container, savedInstanceState, EquipmentViewModel.class);
-        setTextViewObserver(R.id.text_equipment, mViewModel.getText());
-
-        return root;
+        return mViewModel;
     }
+
+//    @Override
+//    public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
+//    {
+//        View root = createView(inflater, container, savedInstanceState, EquipmentViewModel.class);
+//        setTextViewObserver(R.id.text_equipment, mViewModel.getText());
+//
+//        return root;
+//    }
 }
