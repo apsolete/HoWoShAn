@@ -4,9 +4,9 @@ import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.AndroidViewModel;
+import com.apsolete.customui.CustomViewModel;
 
-public class SendViewModel extends AndroidViewModel
+public class SendViewModel extends CustomViewModel
 {
 
     private MutableLiveData<String> mText;
@@ -16,6 +16,12 @@ public class SendViewModel extends AndroidViewModel
         super(application);
         mText = new MutableLiveData<>();
         mText.setValue("This is send fragment");
+    }
+
+    @Override
+    public void start()
+    {
+
     }
 
     public LiveData<String> getText()

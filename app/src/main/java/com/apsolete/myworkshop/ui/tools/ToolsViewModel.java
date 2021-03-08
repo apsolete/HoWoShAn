@@ -4,9 +4,9 @@ import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MutableLiveData;
-import androidx.lifecycle.AndroidViewModel;
+import com.apsolete.customui.CustomViewModel;
 
-public class ToolsViewModel extends AndroidViewModel
+public class ToolsViewModel extends CustomViewModel
 {
 
     private MutableLiveData<String> mText;
@@ -16,6 +16,12 @@ public class ToolsViewModel extends AndroidViewModel
         super(application);
         mText = new MutableLiveData<>();
         mText.setValue("This is Tools fragment");
+    }
+
+    @Override
+    public void start()
+    {
+
     }
 
     public LiveData<String> getText()
