@@ -7,43 +7,43 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.apsolete.myworkshop.ui.home.HomeFragment"
+        android:name="com.apsolete.workshop.ui.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
 
     <fragment
         android:id="@+id/nav_workshop"
-        android:name="com.apsolete.myworkshop.ui.workshop.WorkshopFragment"
+        android:name="com.apsolete.workshop.ui.workshop.WorkshopFragment"
         android:label="@string/menu_workshop"
         tools:layout="@layout/fragment_workshop" />
 
     <fragment
         android:id="@+id/nav_equipment"
-        android:name="com.apsolete.myworkshop.ui.equipment.EquipmentFragment"
+        android:name="com.apsolete.workshop.ui.equipment.EquipmentFragment"
         android:label="@string/menu_equipment"
         tools:layout="@layout/fragment_equipment" />
 
     <fragment
         android:id="@+id/nav_tools"
-        android:name="com.apsolete.myworkshop.ui.tools.ToolsFragment"
+        android:name="com.apsolete.workshop.ui.tools.ToolsFragment"
         android:label="@string/menu_tools"
         tools:layout="@layout/fragment_tools" />
 
     <fragment
         android:id="@+id/nav_materials"
-        android:name="com.apsolete.myworkshop.ui.materials.MaterialsFragment"
+        android:name="com.apsolete.workshop.ui.materials.MaterialsFragment"
         android:label="@string/menu_materials"
         tools:layout="@layout/fragment_materials" />
 
     <fragment
         android:id="@+id/nav_hardware"
-        android:name="com.apsolete.myworkshop.ui.hardware.HardwareFragment"
+        android:name="com.apsolete.workshop.ui.hardware.HardwareFragment"
         android:label="@string/menu_hardware"
         tools:layout="@layout/fragment_hardware" />
 
     <fragment
         android:id="@+id/nav_send"
-        android:name="com.apsolete.myworkshop.ui.send.SendFragment"
+        android:name="com.apsolete.workshop.ui.send.SendFragment"
         android:label="@string/menu_send"
         tools:layout="@layout/fragment_send" />
 </navigation>
