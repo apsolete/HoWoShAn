@@ -1,7 +1,11 @@
 package com.apsolete.workshop.ui.equipment.types;
 
-import com.apsolete.workshop.R;
+import android.view.View;
+import android.view.ViewGroup;
+
+import com.apsolete.customui.Adapters;
 import com.apsolete.customui.CustomFragment;
+import com.apsolete.workshop.R;
 
 public class TypesFragment extends CustomFragment<TypesViewModel>
 {
@@ -14,5 +18,14 @@ public class TypesFragment extends CustomFragment<TypesViewModel>
     public TypesViewModel getViewModel()
     {
         return mViewModel;
+    }
+
+    private static class TypesAdapter extends Adapters.ItemsAdapter
+    {
+        @Override
+        public View getView(int i, View view, ViewGroup viewGroup)
+        {
+            return null;
+        }
     }
 }
