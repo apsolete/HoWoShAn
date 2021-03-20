@@ -6,6 +6,7 @@ import android.view.ViewGroup;
 import com.apsolete.customui.Adapters;
 import com.apsolete.customui.CustomFragment;
 import com.apsolete.workshop.R;
+import com.apsolete.workshop.db.entities.EquipType;
 
 public class TypesFragment extends CustomFragment<TypesViewModel>
 {
@@ -20,7 +21,7 @@ public class TypesFragment extends CustomFragment<TypesViewModel>
         return mViewModel;
     }
 
-    private static class TypesAdapter extends Adapters.ItemsAdapter
+    private static class TypesAdapter extends Adapters.ItemsAdapter<EquipType>
     {
         @Override
         public View getView(int i, View view, ViewGroup viewGroup)
