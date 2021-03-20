@@ -7,7 +7,7 @@ public class WorkshopFragment extends CustomFragment<WorkshopViewModel>
 {
     public WorkshopFragment()
     {
-        super(R.layout.fragment_workshop, 0, WorkshopViewModel.class);
+        super(R.layout.fragment_workshop, R.string.title_workshop, WorkshopViewModel.class);
     }
 
     @Override

@@ -7,7 +7,7 @@ public class KindFragment extends CustomFragment<KindViewModel>
 {
     public KindFragment()
     {
-        super(R.layout.fragment_equipmentkind, 0, KindViewModel.class);
+        super(R.layout.fragment_equipmentkind, R.string.title_equipmentkind, KindViewModel.class);
     }
 
     @Override

@@ -7,7 +7,7 @@ public class HardwareFragment extends CustomFragment<HardwareViewModel>
 {
     public HardwareFragment()
     {
-        super(R.layout.fragment_hardware, 0, HardwareViewModel.class);
+        super(R.layout.fragment_hardware, R.string.title_hardware, HardwareViewModel.class);
     }
 
     @Override

@@ -7,7 +7,7 @@ public class ClassesFragment extends CustomFragment<ClassesViewModel>
 {
     public ClassesFragment()
     {
-        super(R.layout.fragment_equipmentclasses, 0, ClassesViewModel.class);
+        super(R.layout.fragment_equipmentclasses, R.string.title_equipmentclasses, ClassesViewModel.class);
     }
 
     @Override

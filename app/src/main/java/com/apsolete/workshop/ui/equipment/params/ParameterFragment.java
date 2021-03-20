@@ -7,7 +7,7 @@ public class ParameterFragment extends CustomFragment<ParameterViewModel>
 {
     public ParameterFragment()
     {
-        super(R.layout.fragment_parameter, 0, ParameterViewModel.class);
+        super(R.layout.fragment_parameter, R.string.title_parameter, ParameterViewModel.class);
     }
 
     @Override

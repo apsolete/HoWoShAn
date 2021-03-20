@@ -18,10 +18,28 @@
         tools:layout="@layout/fragment_workshop" />
 
     <fragment
-        android:id="@+id/nav_equipment"
-        android:name="com.apsolete.workshop.ui.equipment.EquipmentFragment"
-        android:label="@string/menu_equipment"
-        tools:layout="@layout/fragment_equipment" />
+        android:id="@+id/nav_equipments"
+        android:name="com.apsolete.workshop.ui.equipment.EquipmentsFragment"
+        android:label="@string/menu_equipments"
+        tools:layout="@layout/fragment_equipments" />
+
+    <fragment
+        android:id="@+id/nav_equipmenttypes"
+        android:name="com.apsolete.workshop.ui.equipment.types.TypesFragment"
+        android:label="@string/menu_equipmenttypes"
+        tools:layout="@layout/fragment_equipmenttypes" />
+
+    <fragment
+        android:id="@+id/nav_equipmentclasses"
+        android:name="com.apsolete.workshop.ui.equipment.classes.ClassesFragment"
+        android:label="@string/menu_equipmentclasses"
+        tools:layout="@layout/fragment_equipmentclasses" />
+
+    <fragment
+        android:id="@+id/nav_equipmentkinds"
+        android:name="com.apsolete.workshop.ui.equipment.kinds.KindsFragment"
+        android:label="@string/menu_equipmentkinds"
+        tools:layout="@layout/fragment_equipmentkinds" />
 
     <fragment
         android:id="@+id/nav_tools"
@@ -40,6 +58,18 @@
         android:name="com.apsolete.workshop.ui.hardware.HardwareFragment"
         android:label="@string/menu_hardware"
         tools:layout="@layout/fragment_hardware" />
+
+    <fragment
+        android:id="@+id/nav_parameters"
+        android:name="com.apsolete.workshop.ui.equipment.params.ParametersFragment"
+        android:label="@string/menu_parameters"
+        tools:layout="@layout/fragment_parameters" />
+
+    <fragment
+        android:id="@+id/nav_units"
+        android:name="com.apsolete.workshop.ui.equipment.params.UnitsFragment"
+        android:label="@string/menu_units"
+        tools:layout="@layout/fragment_units" />
 
     <fragment
         android:id="@+id/nav_send"

@@ -7,7 +7,7 @@ public class HomeFragment extends CustomFragment<HomeViewModel>
 {
     public HomeFragment()
     {
-        super(R.layout.fragment_home, 0, HomeViewModel.class);
+        super(R.layout.fragment_home, R.string.title_home, HomeViewModel.class);
     }
 
     @Override

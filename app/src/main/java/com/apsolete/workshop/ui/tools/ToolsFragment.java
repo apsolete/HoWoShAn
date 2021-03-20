@@ -7,7 +7,7 @@ public class ToolsFragment extends CustomFragment<ToolsViewModel>
 {
     public ToolsFragment()
     {
-        super(R.layout.fragment_tools, 0, ToolsViewModel.class);
+        super(R.layout.fragment_tools, R.string.title_tools, ToolsViewModel.class);
     }
 
     @Override

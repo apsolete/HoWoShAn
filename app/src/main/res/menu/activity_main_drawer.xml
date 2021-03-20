@@ -13,26 +13,54 @@
             android:icon="@drawable/ic_menu_gallery"
             android:title="@string/menu_workshop" />
         <item
-            android:id="@+id/nav_equipment"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="@string/menu_equipment" />
+            android:title="@string/menu_equipments">
+            <menu>
+                <item
+                    android:id="@+id/nav_equipmenttypes"
+                    android:icon="@drawable/ic_menu_gallery"
+                    android:title="@string/menu_equipmenttypes">
+                </item>
+                <item
+                    android:id="@+id/nav_equipmentclasses"
+                    android:icon="@drawable/ic_menu_gallery"
+                    android:title="@string/menu_equipmentclasses">
+                </item>
+                <item
+                    android:id="@+id/nav_equipmentkinds"
+                    android:icon="@drawable/ic_menu_gallery"
+                    android:title="@string/menu_equipmentkinds">
+                </item>
+                <item
+                    android:id="@+id/nav_equipments"
+                    android:icon="@drawable/ic_menu_gallery"
+                    android:title="@string/menu_equipments">
+                </item>
+            </menu>
+        </item>
         <item
             android:id="@+id/nav_materials"
-            android:icon="@drawable/ic_menu_slideshow"
+            android:icon="@drawable/ic_menu_gallery"
             android:title="@string/menu_materials" />
         <item
             android:id="@+id/nav_tools"
-            android:icon="@drawable/ic_menu_manage"
+            android:icon="@drawable/ic_menu_gallery"
             android:title="@string/menu_tools" />
         <item
             android:id="@+id/nav_hardware"
-            android:icon="@drawable/ic_menu_share"
+            android:icon="@drawable/ic_menu_gallery"
             android:title="@string/menu_hardware" />
+        <item
+            android:id="@+id/nav_parameters"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/menu_parameters" />
+        <item
+            android:id="@+id/nav_units"
+            android:icon="@drawable/ic_menu_gallery"
+            android:title="@string/menu_units" />
     </group>
 
     <item android:title="@string/communicate">
         <menu>
-
             <item
                 android:id="@+id/nav_send"
                 android:icon="@drawable/ic_menu_send"

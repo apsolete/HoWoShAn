@@ -7,7 +7,7 @@ public class UnitFragment extends CustomFragment<UnitViewModel>
 {
     public UnitFragment()
     {
-        super(R.layout.fragment_unit, 0, UnitViewModel.class);
+        super(R.layout.fragment_unit, R.string.title_unit, UnitViewModel.class);
     }
 
     @Override

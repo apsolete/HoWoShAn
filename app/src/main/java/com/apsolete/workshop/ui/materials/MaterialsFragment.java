@@ -7,7 +7,7 @@ public class MaterialsFragment extends CustomFragment<MaterialsViewModel>
 {
     public MaterialsFragment()
     {
-        super(R.layout.fragment_materials, 0, MaterialsViewModel.class);
+        super(R.layout.fragment_materials, R.string.title_materials, MaterialsViewModel.class);
     }
 
     @Override

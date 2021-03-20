@@ -1,17 +1,17 @@
 package com.apsolete.workshop.ui.equipment;
 
-import com.apsolete.workshop.R;
 import com.apsolete.customui.CustomFragment;
+import com.apsolete.workshop.R;
 
-public class EquipmentFragment extends CustomFragment<EquipmentViewModel>
+public class EquipmentsFragment extends CustomFragment<EquipmentsViewModel>
 {
-    public EquipmentFragment()
+    public EquipmentsFragment()
     {
-        super(R.layout.fragment_equipment, R.string.title_equipment, EquipmentViewModel.class);
+        super(R.layout.fragment_equipment, R.string.title_equipment, EquipmentsViewModel.class);
     }
 
     @Override
-    public EquipmentViewModel getViewModel()
+    public EquipmentsViewModel getViewModel()
     {
         return mViewModel;
     }
