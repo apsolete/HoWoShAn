@@ -33,12 +33,21 @@ public class TypesViewModel extends CustomViewModel
     @Override
     public void start()
     {
-
+        load();
     }
 
     //@Override
     public void load()
     {
-        mEquipTypes.setValue(new ArrayList<EquipType>());
+        ArrayList<EquipType> types = new ArrayList<EquipType>();
+        EquipType t1 = new EquipType();
+        t1.id = 1;
+        t1.name = "type 1";
+        types.add(t1);
+        t1 = new EquipType();
+        t1.id = 2;
+        t1.name = "type 2";
+        types.add(t1);
+        mEquipTypes.setValue(types);
     }
 }
