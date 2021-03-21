@@ -43,10 +43,17 @@ public class TypesViewModel extends CustomViewModel
         EquipType t1 = new EquipType();
         t1.id = 1;
         t1.name = "type 1";
+        t1.description = "description type 1";
         types.add(t1);
         t1 = new EquipType();
         t1.id = 2;
         t1.name = "type 2";
+        t1.description = "description type 2";
+        types.add(t1);
+        t1 = new EquipType();
+        t1.id = 3;
+        t1.name = "type 3";
+        t1.description = "description type 3";
         types.add(t1);
         mEquipTypes.setValue(types);
     }

@@ -10,7 +10,14 @@
     <string name="menu_home">Home</string>
     <string name="menu_workshop">Workshop</string>
     <string name="menu_equipments">Equipments</string>
+
     <string name="menu_equipmenttypes">Equipment Types</string>
+    <string name="title_equipmenttypes">Equipment Types</string>
+    <string name="title_equipmenttype">Equipment Type</string>
+    <string name="title_equipmenttype_id">ID</string>
+    <string name="title_equipmenttype_name">Name</string>
+    <string name="title_equipmenttype_descr">Description</string>
+
     <string name="menu_equipmentclasses">Equipment Classes</string>
     <string name="menu_equipmentkinds">Equipment Kinds</string>
     <string name="menu_tools">Tools</string>
@@ -24,8 +31,7 @@
     <string name="title_workshop">Workshop</string>
     <string name="title_equipment">Equipment</string>
     <string name="title_equipments">Equipments</string>
-    <string name="title_equipmenttype">Eq.Type</string>
-    <string name="title_equipmenttypes">Eq.Types</string>
+
     <string name="title_equipmentclass">Eq.Class</string>
     <string name="title_equipmentclasses">Eq.Classes</string>
     <string name="title_equipmentkind">Eq.Kind</string>

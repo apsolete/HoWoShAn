@@ -11,4 +11,6 @@ public class EquipType
     public long id;
     @ColumnInfo
     public String name;
+    @ColumnInfo
+    public String description;
 }
