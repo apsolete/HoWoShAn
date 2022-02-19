@@ -5,17 +5,16 @@ import androidx.room.RoomDatabase;
 import androidx.room.TypeConverters;
 
 import com.apsolete.workshop.common.Converters;
-import com.apsolete.workshop.db.dao.EquipmentDao;
+import com.apsolete.workshop.db.dao.WsEntityDao;
 import com.apsolete.workshop.db.dao.ParameterDao;
 import com.apsolete.workshop.db.dao.ProjectDao;
 import com.apsolete.workshop.db.dao.WorkshopDao;
-import com.apsolete.workshop.db.entities.EquipType;
-import com.apsolete.workshop.db.entities.Equipment;
-import com.apsolete.workshop.db.entities.EquipClass;
-import com.apsolete.workshop.db.entities.EquipmentParam;
-import com.apsolete.workshop.db.entities.EquipKind;
+import com.apsolete.workshop.db.entities.ProjectEntities;
+import com.apsolete.workshop.db.entities.WsEntity;
+import com.apsolete.workshop.db.entities.WsEntityClass;
+import com.apsolete.workshop.db.entities.WsEntityParam;
+import com.apsolete.workshop.db.entities.WsEntityType;
 import com.apsolete.workshop.db.entities.ParameterSet;
-import com.apsolete.workshop.db.entities.ProjectEquipments;
 import com.apsolete.workshop.db.entities.Parameter;
 import com.apsolete.workshop.db.entities.Project;
 import com.apsolete.workshop.db.entities.ProjectItem;
@@ -28,13 +27,12 @@ import com.apsolete.workshop.db.entities.Workshop;
         entities = {
         Unit.class,
         Parameter.class,
-        EquipType.class,
-        EquipClass.class,
-        EquipKind.class,
+        WsEntityType.class,
+        WsEntityClass.class,
         ParameterSet.class,
-        Equipment.class,
-        EquipmentParam.class,
-        ProjectEquipments.class,
+        WsEntity.class,
+        WsEntityParam.class,
+        ProjectEntities.class,
         Workshop.class,
         Project.class,
         Purchase.class,
@@ -44,7 +42,7 @@ import com.apsolete.workshop.db.entities.Workshop;
 public abstract class WorkshopDatabase extends RoomDatabase
 {
     public abstract WorkshopDao workshopDao();
-    public abstract EquipmentDao equipmentDao();
+    public abstract WsEntityDao equipmentDao();
     public abstract ProjectDao projectDao();
     public abstract ParameterDao parameterDao();
 }

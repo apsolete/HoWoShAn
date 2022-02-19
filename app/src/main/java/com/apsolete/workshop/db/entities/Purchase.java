@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey;
 import java.util.Date;
 
 @Entity(tableName = "purchase",
-        foreignKeys = @ForeignKey(entity = Equipment.class, parentColumns = "id", childColumns = "equip_id"))
+        foreignKeys = @ForeignKey(entity = WsEntity.class, parentColumns = "id", childColumns = "equip_id"))
 public class Purchase
 {
     @PrimaryKey(autoGenerate = true)

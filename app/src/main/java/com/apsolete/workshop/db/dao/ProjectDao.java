@@ -6,7 +6,7 @@ import androidx.room.Insert;
 import androidx.room.Query;
 import androidx.room.Update;
 
-import com.apsolete.workshop.db.entities.ProjectEquipments;
+import com.apsolete.workshop.db.entities.ProjectEntities;
 import com.apsolete.workshop.db.entities.Project;
 import com.apsolete.workshop.db.entities.ProjectItem;
 
@@ -15,14 +15,14 @@ import java.util.List;
 @Dao
 public abstract class ProjectDao
 {
-    @Query("SELECT * FROM projectequipments")
-    public abstract List<ProjectEquipments> getAllProjectEquipments();
+    @Query("SELECT * FROM projecteentities")
+    public abstract List<ProjectEntities> getAllProjectEntities();
     @Insert
-    public abstract long insertProjectEquipment(ProjectEquipments prjEquips);
+    public abstract long insertProjectEntities(ProjectEntities prjEquips);
     @Update
-    public abstract int updateProjectEquipment(ProjectEquipments prjEquips);
+    public abstract int updateProjectEntities(ProjectEntities prjEquips);
     @Delete
-    public abstract int deleteProjectEquipment(ProjectEquipments prjEquips);
+    public abstract int deleteProjectEntities(ProjectEntities prjEquips);
 
     @Query("SELECT * FROM projectitem")
     public abstract List<ProjectItem> getAllProjectItems();
