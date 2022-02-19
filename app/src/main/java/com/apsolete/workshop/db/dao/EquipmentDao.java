@@ -26,7 +26,7 @@ public abstract class EquipmentDao
     @Delete
     public abstract int deleteEquipmentClass(EquipClass eqclass);
 
-    @Query("SELECT * FROM EquipKind")
+    @Query("SELECT * FROM equipkind")
     public abstract List<EquipKind> getAllEquipmentTypes();
     @Insert
     public abstract long insertEquipmentType(EquipKind eqtype);
@@ -35,7 +35,7 @@ public abstract class EquipmentDao
     @Delete
     public abstract int deleteEquipmentType(EquipKind eqtype);
 
-    @Query("SELECT * FROM equip_param")
+    @Query("SELECT * FROM equipparam")
     public abstract List<EquipmentParam> getAllEquipmentParams();
     @Insert
     public abstract long insertEquipmentParam(EquipmentParam eqparam);

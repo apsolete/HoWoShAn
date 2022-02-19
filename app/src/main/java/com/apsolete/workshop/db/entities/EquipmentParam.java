@@ -5,7 +5,7 @@ import androidx.room.Entity;
 import androidx.room.ForeignKey;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "equip_param",
+@Entity(tableName = "equipparam",
         foreignKeys = {
                 @ForeignKey(entity = Equipment.class, parentColumns = "id", childColumns = "equip_id"),
                 @ForeignKey(entity = ParameterSet.class, parentColumns = "id", childColumns = "parset_id")})
