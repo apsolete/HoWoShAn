@@ -6,31 +6,31 @@
     android:orientation="vertical">
 
     <TextView
-        android:id="@+id/text_equipment_id"
+        android:id="@+id/text_entitytype_id"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
-        android:text="@string/title_equipmenttype_id"
+        android:text="@string/title_entitytype_id"
         android:textAlignment="center"
         android:textSize="20sp" />
 
     <EditText
-        android:id="@+id/edit_equipmenttype_name"
+        android:id="@+id/edit_entitytype_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
         android:ems="10"
-        android:hint="@string/title_equipmenttype_name"
+        android:hint="@string/title_entitytype_name"
         android:inputType="none"
         android:autofillHints="" />
 
     <EditText
-        android:id="@+id/edit_equipment_descr"
+        android:id="@+id/edit_entitytype_descr"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="2dp"
         android:ems="10"
-        android:hint="@string/title_equipmenttype_descr"
+        android:hint="@string/title_entitytype_descr"
         android:inputType="none"
         android:autofillHints="" />
 

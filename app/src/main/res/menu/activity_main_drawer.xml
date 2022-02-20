@@ -18,17 +18,12 @@
                 <item
                     android:id="@+id/nav_equipmenttypes"
                     android:icon="@drawable/ic_menu_gallery"
-                    android:title="@string/menu_equipmenttypes">
+                    android:title="@string/menu_entitytypes">
                 </item>
                 <item
                     android:id="@+id/nav_equipmentclasses"
                     android:icon="@drawable/ic_menu_gallery"
-                    android:title="@string/menu_equipmentclasses">
-                </item>
-                <item
-                    android:id="@+id/nav_equipmentkinds"
-                    android:icon="@drawable/ic_menu_gallery"
-                    android:title="@string/menu_equipmentkinds">
+                    android:title="@string/menu_entityclasses">
                 </item>
                 <item
                     android:id="@+id/nav_equipments"

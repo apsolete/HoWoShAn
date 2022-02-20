@@ -19,27 +19,21 @@
 
     <fragment
         android:id="@+id/nav_equipments"
-        android:name="com.apsolete.workshop.ui.wsEntity.EquipmentsFragment"
+        android:name="com.apsolete.workshop.ui.wsentity.EquipmentsFragment"
         android:label="@string/menu_equipments"
         tools:layout="@layout/fragment_equipments" />
 
     <fragment
         android:id="@+id/nav_equipmenttypes"
-        android:name="com.apsolete.workshop.ui.wsEntity.types.TypesFragment"
-        android:label="@string/menu_equipmenttypes"
-        tools:layout="@layout/fragment_equipmenttypes" />
+        android:name="com.apsolete.workshop.ui.wsentity.types.TypesFragment"
+        android:label="@string/menu_entitytypes"
+        tools:layout="@layout/fragment_entitytypes" />
 
     <fragment
         android:id="@+id/nav_equipmentclasses"
-        android:name="com.apsolete.workshop.ui.wsEntity.classes.ClassesFragment"
-        android:label="@string/menu_equipmentclasses"
+        android:name="com.apsolete.workshop.ui.wsentity.classes.ClassesFragment"
+        android:label="@string/menu_entityclasses"
         tools:layout="@layout/fragment_equipmentclasses" />
-
-    <fragment
-        android:id="@+id/nav_equipmentkinds"
-        android:name="com.apsolete.workshop.ui.wsEntity.kinds.KindsFragment"
-        android:label="@string/menu_equipmentkinds"
-        tools:layout="@layout/fragment_equipmentkinds" />
 
     <fragment
         android:id="@+id/nav_tools"
@@ -61,13 +55,13 @@
 
     <fragment
         android:id="@+id/nav_parameters"
-        android:name="com.apsolete.workshop.ui.wsEntity.params.ParametersFragment"
+        android:name="com.apsolete.workshop.ui.wsentity.params.ParametersFragment"
         android:label="@string/menu_parameters"
         tools:layout="@layout/fragment_parameters" />
 
     <fragment
         android:id="@+id/nav_units"
-        android:name="com.apsolete.workshop.ui.wsEntity.params.UnitsFragment"
+        android:name="com.apsolete.workshop.ui.wsentity.params.UnitsFragment"
         android:label="@string/menu_units"
         tools:layout="@layout/fragment_units" />
 

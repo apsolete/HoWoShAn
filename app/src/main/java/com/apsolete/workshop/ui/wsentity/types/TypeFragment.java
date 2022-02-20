@@ -7,7 +7,7 @@ public class TypeFragment extends CustomFragment<TypesViewModel>
 {
     public TypeFragment()
     {
-        super(R.layout.fragment_equipmenttype, R.string.title_equipmenttype, TypesViewModel.class);
+        super(R.layout.fragment_entitytype, R.string.title_entitytype, TypesViewModel.class);
     }
 
     @Override

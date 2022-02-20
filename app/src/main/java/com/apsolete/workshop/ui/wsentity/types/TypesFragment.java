@@ -27,7 +27,7 @@ public class TypesFragment extends CustomFragment<TypesViewModel>
 
     public TypesFragment()
     {
-        super(R.layout.fragment_equipmenttypes, R.string.title_equipmenttypes, TypesViewModel.class);
+        super(R.layout.fragment_entitytypes, R.string.title_entitytypes, TypesViewModel.class);
     }
 
     @Override
@@ -55,7 +55,7 @@ public class TypesFragment extends CustomFragment<TypesViewModel>
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState)
     {
         View root = super.onCreateView(inflater, container, savedInstanceState);
-        ListView listView = root.findViewById(R.id.list_types);
+        ListView listView = root.findViewById(R.id.list_entitytypes);
         listView.setAdapter(mTypesAdapter);
 
         // Set up progress indicator

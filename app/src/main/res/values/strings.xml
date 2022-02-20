@@ -11,15 +11,15 @@
     <string name="menu_workshop">Workshop</string>
     <string name="menu_equipments">Equipments</string>
 
-    <string name="menu_equipmenttypes">Equipment Types</string>
-    <string name="title_equipmenttypes">Equipment Types</string>
-    <string name="title_equipmenttype">Equipment Type</string>
-    <string name="title_equipmenttype_id">ID</string>
-    <string name="title_equipmenttype_name">Name</string>
-    <string name="title_equipmenttype_descr">Description</string>
+    <string name="menu_entitytypes">Entity Types</string>
+    <string name="title_entitytypes">Entity Types</string>
+    <string name="title_entitytype">Entity Type</string>
+    <string name="title_entitytype_id">ID</string>
+    <string name="title_entitytype_name">Name</string>
+    <string name="title_entitytype_descr">Description</string>
 
-    <string name="menu_equipmentclasses">Equipment Classes</string>
-    <string name="menu_equipmentkinds">Equipment Kinds</string>
+    <string name="menu_entityclasses">Equipment Classes</string>
+    <string name="menu_entitykinds">Equipment Kinds</string>
     <string name="menu_tools">Tools</string>
     <string name="menu_materials">Materials</string>
     <string name="menu_hardware">Hardware</string>
@@ -32,10 +32,8 @@
     <string name="title_equipment">Equipment</string>
     <string name="title_equipments">Equipments</string>
 
-    <string name="title_equipmentclass">Eq.Class</string>
-    <string name="title_equipmentclasses">Eq.Classes</string>
-    <string name="title_equipmentkind">Eq.Kind</string>
-    <string name="title_equipmentkinds">Eq.Kinds</string>
+    <string name="title_entityclass">Entity Class</string>
+    <string name="title_entityclasses">Entity Classes</string>
     <string name="title_parameter">Parameter</string>
     <string name="title_parameters">Parameters</string>
     <string name="title_unit">Unit</string>
