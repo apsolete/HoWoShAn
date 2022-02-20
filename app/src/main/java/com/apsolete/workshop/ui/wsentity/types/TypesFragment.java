@@ -2,6 +2,8 @@ package com.apsolete.workshop.ui.wsentity.types;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ListView;
@@ -40,6 +42,7 @@ public class TypesFragment extends CustomFragment<TypesViewModel>
     public void onCreate(Bundle savedInstanceState)
     {
         super.onCreate(savedInstanceState);
+        setHasOptionsMenu(true);
         mTypesAdapter = new TypesAdapter();
         mViewModel.getEquipTypes().observe(this, new Observer<List<WsEntityType>>()
         {
@@ -76,6 +79,13 @@ public class TypesFragment extends CustomFragment<TypesViewModel>
         });
 
         return root;
+    }
+
+    @Override
+    public void onCreateOptionsMenu(@NonNull Menu menu, @NonNull MenuInflater inflater)
+    {
+        inflater.inflate(R.menu.main_actions, menu);
+        super.onCreateOptionsMenu(menu, inflater);
     }
 
     private static class TypesAdapter extends Adapters.ItemsAdapter<WsEntityType>
