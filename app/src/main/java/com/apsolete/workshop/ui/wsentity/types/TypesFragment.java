@@ -7,6 +7,12 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.content.ContextCompat;
+import androidx.lifecycle.Observer;
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+
 import com.apsolete.customui.Adapters;
 import com.apsolete.customui.CustomFragment;
 import com.apsolete.customui.ScrollChildSwipeRefreshLayout;
@@ -14,12 +20,6 @@ import com.apsolete.workshop.R;
 import com.apsolete.workshop.db.entities.WsEntityType;
 
 import java.util.List;
-
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.core.content.ContextCompat;
-import androidx.lifecycle.Observer;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 public class TypesFragment extends CustomFragment<TypesViewModel>
 {
@@ -86,17 +86,17 @@ public class TypesFragment extends CustomFragment<TypesViewModel>
             View rowView = view;
             if (rowView == null) {
                 LayoutInflater inflater = LayoutInflater.from(viewGroup.getContext());
-                rowView = inflater.inflate(R.layout.item_equipmenttype, viewGroup, false);
+                rowView = inflater.inflate(R.layout.item_entitytype, viewGroup, false);
             }
             WsEntityType wsEntityType = getItem(i);
 
-            TextView textTypeId = (TextView) rowView.findViewById(R.id.text_equipmenttype_id);
+            TextView textTypeId = (TextView) rowView.findViewById(R.id.text_entitytype_id);
             textTypeId.setText(Long.toString(wsEntityType.id));
 
-            TextView textTypeName = (TextView) rowView.findViewById(R.id.text_equipmenttype_name);
+            TextView textTypeName = (TextView) rowView.findViewById(R.id.text_entitytype_name);
             textTypeName.setText(wsEntityType.name);
 
-            TextView textTypeDescr = (TextView) rowView.findViewById(R.id.text_equipmenttype_descr);
+            TextView textTypeDescr = (TextView) rowView.findViewById(R.id.text_entitytype_descr);
             textTypeDescr.setText(wsEntityType.description);
 
             return rowView;
